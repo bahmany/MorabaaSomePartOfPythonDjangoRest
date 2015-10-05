@@ -1,0 +1,228 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>Ani AngularJS Dashboard Theme</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{ STATIC_URL }}static/favicon.ico"/>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.tmp) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href={% static "bower_components/animate.css/animate.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/Scroll/jquery.mCustomScrollbar.min.css" %}/>
+{#    <link rel="stylesheet" href={% static "bower_components/fullcalendar/fullcalendar.css" %}/>#}
+{#    <link rel="stylesheet" href={% static "bower_components/angular-chart.js/dist/angular-chart.css" %}/>#}
+    <link rel="stylesheet" href={% static "bower_components/hover/css/hover.css" %}/>
+{#    <link rel="stylesheet" href={% static "bower_components/c3/c3.css" %}/>#}
+    <link rel="stylesheet" href={% static "bower_components/angular-loading-bar/build/loading-bar.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/font-awesome/css/font-awesome.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/textAngular/src/textAngular.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/perfect-scrollbar/css/perfect-scrollbar.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/perfect-scrollbar/css/perfect-scrollbar.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/sweetalert/sweetalert.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/ckeditorAngularJs/ng-ckeditor.css" %}/>
+    <link rel="stylesheet" href={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.css" %}/>
+
+
+    <link rel="stylesheet"
+          href={% static "bower_components/angular-progress-button-styles/dist/angular-progress-button-styles.min.css" %}/>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href={% static "styles/app-blue.css" %}>
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor.js -->
+</head>
+<body ng-app="AniTheme" id="main">
+
+<!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+<!-- Add your site or application content here -->
+<div>
+    <div ui-view></div>
+
+</div>
+
+
+
+
+</body>
+<script src={% static "bower_components/jquery/jquery.min.js" %}></script>
+<script src={% static "bower_components/jquery.cookie.js" %}></script>
+<script src={% static "bower_components/input-mask-js/inputmask.js" %}></script>
+<script src={% static "bower_components/input-mask-js/jquery.inputmask.js" %}></script>
+<script src={% static "bower_components/input-mask-js/inputmask.date.extensions.min.js" %}></script>
+<script src={% static "bower_components/input-mask-js/inputmask.numeric.extensions.min.js" %}></script>
+{#<script src={% static "input-mask-js/inputmask.phone.extensions.min.js" %}></script>#}
+<script src={% static "bower_components/input-mask-js/inputmask.regex.extensions.min.js" %}></script>
+<link rel="stylesheet" href={% static "bower_components/jalalijscalendar/skins/calendar-blue.css" %}>
+<script src={% static "bower_components/jalalijscalendar/jalali.js" %}></script>
+<script src={% static "bower_components/jalalijscalendar/calendar.js" %}></script>
+<script src={% static "bower_components/jalalijscalendar/calendar-setup.js" %}></script>
+<script src={% static "bower_components/jalalijscalendar/lang/calendar-fa.js" %}></script>
+<script src={% static "angularThings/others/extras/modernizr.custom.js" %}></script>
+{#<script src={% static "bower_components/masonry.js" %}></script>#}
+<script src={% static "bower_components/Scroll/jquery.mCustomScrollbar.concat.min.js" %}></script>
+<!-- bower:js -->
+<script src={% static "bower_components/perfect-scrollbar/js/perfect-scrollbar.js" %}></script>
+<script src={% static "bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js" %}></script>
+<script src={% static "bower_components/angular/angular.js" %}></script>
+<script src={% static "bower_components/ng-file-upload-master/dist/ng-file-upload-shim.min.js" %}></script>
+<script src={% static "bower_components/ng-file-upload-master/dist/ng-file-upload.js" %}></script>
+<script src={% static "bower_components/angular/angular-cookies.js" %}></script>
+<script src={% static "bower_components/ocLazyLoad/ocLazyLoad.min.js" %}></script>
+<script src={% static "bower_components/angular-form-gen/angular-form-gen.js" %}></script>
+<script src={% static "bower_components/angular-mocks/angular-mocks.js" %}></script>
+<script src={% static "bower_components/ui-router/release/angular-ui-router.js" %}></script>
+<script src={% static "bower_components/angular-animate/angular-animate.js" %}></script>
+<script src={% static "bower_components/angular-ui-tree-master/dist/angular-ui-tree.min.js" %}></script>
+{#<script src={% static "bower_components/fullcalendar/fullcalendar.js" %}></script>#}
+{#<script src={% static "bower_components/angular-ui-calendar/src/calendar.js" %}></script>#}
+{#<script src={% static "bower_components/Chart.js/Chart.js" %}></script>#}
+{#<script src={% static "bower_components/angular-chart.js/dist/angular-chart.js" %}></script>#}
+<script src={% static "bower_components/d3/d3.js" %}></script>
+{#<script src={% static "bower_components/c3/c3.js" %}></script>#}
+{#<script src={% static "bower_components/c3-angular/c3js-directive.js" %}></script>#}
+{#<script src={% static "bower_components/angular-growl/build/angular-growl.js" %}></script>#}
+<script src={% static "bower_components/angular-loading-bar/build/loading-bar.js" %}></script>
+{#<script src={% static "bower_components/angular-growl-notifications/dist/angular-growl-notifications.js" %}></script>#}
+<script src={% static "bower_components/rangy/rangy-core.min.js" %}></script>
+<script src={% static "bower_components/rangy/rangy-classapplier.min.js" %}></script>
+<script src={% static "bower_components/rangy/rangy-selectionsaverestore.min.js" %}></script>
+<script src={% static "bower_components/rangy/rangy-serializer.min.js" %}></script>
+<script src={% static "bower_components/textAngular/src/textAngular.js" %}></script>
+<script src={% static "bower_components/textAngular/src/textAngular-sanitize.js" %}></script>
+<script src={% static "bower_components/textAngular/src/textAngularSetup.js" %}></script>
+<script src={% static "bower_components/classie/classie.js" %}></script>
+<script src={% static "bower_components/picker.js" %}></script>
+<script src={% static 'bower_components/ckeditor/full/ckeditor.js' %}></script>
+<script src={% static "bower_components/angular-progress-button-styles/dist/angular-progress-button-styles.min.js" %}></script>
+<script src={% static "bower_components/angular-translate/angular-translate.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-url/angular-translate-loader-url.js" %}></script>
+<script src={% static "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" %}></script>
+<!-- endbower -->
+<script src={% static "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" %}></script>
+<script src={% static "bower_components/sweetalert/sweetalert.min.js" %}></script>
+<!-- endbuild -->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src={% static "angularThings/app.js" %}></script>
+<script src={% static 'bower_components/ckeditorAngularJs/ng-ckeditor.js' %}></script>
+<script src={% static 'angularThings/others/fitlers/moment.js' %}></script>
+<script src={% static 'angularThings/others/fitlers/moment-jalaali.js' %}></script>
+<script src={% static 'angularThings/others/fitlers/jalaliDateFilter.js' %}></script>
+{#<script src={% static "ani-theme/scripts/extras/map.min.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/extras/worldmap.js" %}></script>#}
+<script src={% static "angularThings/companiesManagement/companiesManagmentService.js" %}></script>
+<script src={% static "angularThings/others/extras/progressButton.js" %}></script>
+<script src={% static "angularThings/authentication/loginCtrl.js" %}></script>
+<script src={% static "angularThings/authentication/logoutCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/dashboard.js" %}></script>
+{#<script src={% static "ani-theme/scripts/controllers/alertCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/btnCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/collapseCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/dateCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/dropdownCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/modalCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/paginationCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/popoverCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/tooltipCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/progressCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/tabsCtrl.js" %}></script>#}
+<script src={% static "angularThings/others/controllers/userTableCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/groupTableCtrl.js" %}></script>
+{#<script src={% static "angularThings/others/controllers/../../amspApp/static/angularThings/bpms/bpmnModelerCtrl.js" %}></script>#}
+{#<script src={% static "angularThings/others/controllers/../../amspApp/static/angularThings/bpms/bpmnFormBuilderCtrl.js" %}></script>#}
+{#<script src={% static "angularThings/others/controllers/../../amspApp/static/angularThings/bpms/bpmnTableCtrl.js" %}></script>#}
+<script src={% static "angularThings/others/controllers/timepickerCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/sidebarCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/homeCtrl.js" %}></script>
+{#<script src={% static "ani-theme/scripts/controllers/chartCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/dojobCtrl.js" %}></script>#}
+{#    <script src={% static "ani-theme/scripts/controllers/todoCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/buttonCtrl.js" %}></script>#}
+{#<script src={% static "ani-theme/scripts/controllers/clndrCtrl.js" %}></script>#}
+<script src={% static "angularThings/authentication/registerCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/ModalAreYouSureInstanceCtrl.js" %}></script>
+<script src={% static "angularThings/others/controllers/ModalPermissionDeniedInstanceCtrl.js" %}></script>
+<script src={% static "angularThings/companiesManagement/companyTableCtrl.js" %}></script>
+<script src={% static 'bower_components/content-editable.js' %}></script>
+<script src={% static 'angularThings/others/directives/topnav/topnav.js' %}></script>
+<script src={% static 'angularThings/others/directives/sidebar/sidebar.js' %}></script>
+<script src={% static 'angularThings/others/directives/stats/stats.js' %}></script>
+<script src={% static 'angularThings/others/directives/content-editable/content-editable.js' %}></script>
+{#<script src={% static 'ani-theme/scripts/directives/ckeditor/ckeditorDirective.js' %}></script>#}
+<script src={% static 'angularThings/others/directives/avatar/avatarDirective.js' %}></script>
+<script src={% static 'angularThings/others/directives/HtmlContainerDirective.js' %}></script>
+{#<script src={% static "bower_components/angular-infinit-scroll/ng-infinite-scroll.min.js" %}></script>#}
+<script src={% static 'angularThings/authentication/authentication.service.js' %}></script>
+<script src={% static 'angularThings/others/directives/dispatcher/ngRepeatFinished.js' %}></script>
+{#<script src={% static 'angularThings/others/services/../../amspApp/static/angularThings/bpms/bpmnService.js' %}></script>#}
+{#<script src={% static 'angularThings/others/services/../../amspApp/static/angularThings/bpms/taskService.js' %}></script>#}
+{#<script src={% static 'bower_components/cookie/jquery.cookie.js' %}></script>#}
+
+<!-- endbuild -->
+
+<!-- build:js scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+    <script src={% static "/bower_components/es5-shim/es5-shim.js" %}></script>
+    <script src={% static "/bower_components/json3/lib/json3.js" %}></script>
+    <![endif]-->
+<!-- endbuild -->
+
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+</script>
+<style>
+    #cke_Upload_142 {
+        display: inline-block !important;
+    }
+
+
+
+    .calendar {
+        direction: rtl;
+    }
+
+    #flat_calendar_1, #flat_calendar_2 {
+        width: 100%;
+    }
+
+    .example {
+        padding: 10px;
+    }
+
+    .display_area {
+        background-color: #FFFF88
+    }
+{#    .panel-heading *{#}
+{#        direction: ltr;#}
+{#    }#}
+</style>
+
+</html>

@@ -1,0 +1,170 @@
+<aside id="sidebar">
+    <div class="sidenav-outer">
+        <div class="side-menu">
+            <div class="menu-body">
+                <ul class="nav nav-pills nav-stacked sidenav">
+                    <li ng-class="{active: $state.includes('home')}">
+                        <a ui-sref="home">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li><a ng-class="{active: $state.includes('home')}" ui-sref="home">// 'dashboard' |
+                                translate //</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{active: $state.includes('ams')}">
+                        <a href="#/dashboard/Letter">
+                            <span class="fa fa-envelope"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header">// 'ams' | translate //</li>
+                            <li><a ng-class="{active: $state.includes('inboxLetter')}" ui-sref="inboxLetter">//
+                                'inboxLetter' | translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('secretariat')}" ui-sref="secretariat">//
+                                'secretariat' | translate //</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{active: $state.includes('bpms')}">
+                        <a ui-sref="inboxTasks">
+                            <span class="fa fa-tasks"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header">// 'bpms' | translate //</li>
+                            <li><a ng-class="{active: $state.includes('process.inbox')}" ui-sref="process.inbox">//
+                                'inboxTasks' | translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('process.myProcess')}" ui-sref="process.myProcess">// 'myTasks' |
+                                translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('process.myDoneProcess')}" ui-sref="process.myDoneProcess">// 'myDoneTasks' |
+                                translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('process.archive')}" ui-sref="process.archive">//
+                                'tasksArchive' | translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('documents')}" ui-sref="documents">// 'documents'
+                                | translate //</a></li>
+
+                        </ul>
+                    </li>
+                    <li ng-class="{active: $state.includes('companiesManagement')}">
+                        <a href="#/dashboard/Companies">
+                            <span class="fa fa-building"></span>
+                        </a>
+{#                        <ul class="nested-dropdown animated fadeIn">#}
+{#                            <li class="sidemenu-header">#}
+{#                                // 'Companies Managment' | translate //#}
+{#                                <a ng-class="{active: $state.includes('profileCompanyManagement')}"#}
+{#                                   ui-sref="profileCompanyManagement">// 'profileCompany' | translate //</a><#}
+{##}
+{#                            </li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('profileCompanyManagement')}"#}
+                            {#                                   ui-sref="profileCompanyManagement">// 'profileCompany' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('chartManagement')}" ui-sref="chartManagement">//#}
+                            {#                                'chart' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('membersManagement')}"#}
+                            {#                                   ui-sref="membersManagement">// 'members' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('BPManagement')}" ui-sref="BPManagement">//#}
+                            {#                                'businessProcesses' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('secretariatsManagement')}"#}
+                            {#                                   ui-sref="secretariatsManagement">// 'secretariats' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('documentsManagement')}"#}
+                            {#                                   ui-sref="documentsManagement">// 'documents' | translate //</a></li>#}
+                            {#                            <li><a ng-class="{active: $state.includes('hiringManagement')}" ui-sref="hiringManagement">//#}
+                            {#                                'hiring' | translate //</a></li>#}
+{#                        </ul>#}
+                    </li>
+                    <li ng-class="{active: $state.includes('tools')}">
+                        <a ui-sref="smartCalendar">
+                            <span class="fa fa-wrench"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header">// 'tools' | translate //</li>
+
+                            <li><a ng-class="{active: $state.includes('smartCalendar')}" ui-sref="smartCalendar">//
+                                'smartCalendar' | translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('myNotes')}" ui-sref="myNotes">// 'myNotes' |
+                                translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('myGroups')}" ui-sref="myGroups">// 'myGroups' |
+                                translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('myContacts')}" ui-sref="myContacts">//
+                                'myContacts' | translate //</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{active: $state.includes('settings')}">
+                        <a ui-sref="profile">
+                            <span class="fa fa-gears"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header">// 'settings' | translate //</li>
+
+                            <li><a ng-class="{active: $state.includes('profile')}" ui-sref="profile">// 'profile' |
+                                translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('importMailBox')}" ui-sref="importMailBox">//
+                                'importMailBox' | translate //</a></li>
+                            <li><a ng-class="{active: $state.includes('changePass')}" ui-sref="changePass">//
+                                'changePass' | translate //</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{active: $state.includes('table')}">
+                        <a ui-sref="table">
+                            <span class="glyphicon glyphicon-list"></span>
+                        </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li><a ng-class="{active: $state.includes('users')}" ui-sref="users">// 'users' | translate
+                                //</a></li>
+                            <li><a ng-class="{active: $state.includes('groups')}" ui-sref="groups">// 'groups' |
+                                translate //</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="side-widgets">
+            <div class="widgets-content">
+
+                <div class="text-center">
+                    <a href="#/dashboard/MyProfile">
+
+                        <img src="/static/images/flat-avatar.png"
+                             class="user-avatar"
+                             call-current-user-profile
+                                />
+
+                    </a>
+
+                    <div class="text-center avatar-name">
+                        {{ currentUser }}
+                    </div>
+                </div>
+                <div class="calendar-container text-center">
+
+
+                    <span id="display_area_1" class="display_area" style="display: none"></span>
+
+                    <form method="get" action="#">
+                        <input id="date_input_7" type="hidden" name="date"/>
+                    </form>
+                    <div id="flat_calendar_1"></div>
+
+
+                </div>
+                <div class="news-feed">
+                    <div class="feed-header">// 'tips' | translate //</div>
+                    <div class="feed-content">
+                        <ul class="feed">
+                            <li>
+                                <a href="">// 'li1' | translate //</a> <span class="feed-date">25/4/2015</span>
+                            </li>
+
+                            <li>
+                                <a href="">// 'li4' | translate //</a> <span class="feed-date">25/4/2015</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</aside>
+
+

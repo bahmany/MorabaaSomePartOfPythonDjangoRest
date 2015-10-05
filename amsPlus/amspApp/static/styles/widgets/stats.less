@@ -1,0 +1,37 @@
+a.stat {
+	.box;
+	display: table !important;
+	width: 100%;
+	padding: 10px;
+	height: 89px;
+	margin-bottom: 10px;
+	text-align: left;
+	.stat-icon, .stat-label {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.stat-icon {
+		margin-top: 5px;
+		width: 75px;
+	}
+	.stat-label {
+		.label-header {
+			font-size: 22px;
+		}
+	}
+	.stat-detail {
+		margin-top: 10px;
+		font-size: 14px;
+		color: #666;
+		i {
+			margin-top: 5px;
+		}
+	}
+}
+
+.progress-sm {
+	&.progress {
+		height: 5px;
+		margin-bottom: 0;
+	}
+}

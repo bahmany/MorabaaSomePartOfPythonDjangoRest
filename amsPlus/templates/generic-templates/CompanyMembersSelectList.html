@@ -1,0 +1,29 @@
+<div id="companymemberselectdiv" class="searchmem">
+
+    {% load pager_navigator_tags %}
+    {% pagerNavigator style="text-center" listname="members" search_ng_model="MembersSearchText" PageTo="MemberPageTo" %}
+
+    <div ng-repeat="member in members.results"
+         style="float: right;  padding: 10px;  border: solid 1px lightgrey;border-radius: 0px; width: 100%; border-top: none;">
+        <div style="display: block">
+            <a style="cursor: pointer;display: block; text-align: right; word-wrap: break-word; float: right">
+                <img style="margin-left: 10px; width: 25px; height: 25px; display: block; direction: ltr; cursor: pointer"
+                     src="//member.avatar//">
+            </a>
+
+            <div style="overflow: hidden; display: block; text-align: right; word-wrap: break-word">
+                <div>
+                    //member.profileName//
+                    <small>//member.chartName//</small>
+                </div>
+            </div>
+            <div class="btn-group btn-group-xs pull-left">
+                <i class="fa fa-search other-btn"></i>
+                <i class="fa fa-arrow-circle-o-left other-btn" ng-click="addToSelected(member)"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+
+</style>

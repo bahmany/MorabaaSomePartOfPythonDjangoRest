@@ -1,0 +1,22 @@
+<div class="form-group {{ style.cssclass }} {% if field.errors %}has-error{% endif %}" >
+    {% if field.label %}
+        <label class="" for="{{ field.name }}">{{ field.label }}</label>
+    {% endif %}
+ <input type="text" class="form-control input-sm "
+                               placeholder="// 'Searchhere...' | translate //" ng-model="{{ style.searchInput }}"
+                               ng-keyup="{{ style.searchFunc }}" style="margin-bottom: 8px;">
+   <div ng-model="{{ style.ngmodel }}" picker style="height: 125px;overflow: scroll;">
+    <div ng-repeat="opt in {{ style.options }}">
+      <label class="checkbox1"><input type="checkbox" picker-item value="//opt.id//"><span></span> //opt.{{ style.dataname }}//</label>
+    </div>
+  </div>
+
+    <div class="alert alert-warning alert-dismissable" role="alert" ng-repeat="(key,val) in errors"
+         ng-if="key == '{{ field.name }}'">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">
+       ×
+   </span>
+        </button>
+        <p ng-repeat="a in val">//a//</p></div>
+</div>

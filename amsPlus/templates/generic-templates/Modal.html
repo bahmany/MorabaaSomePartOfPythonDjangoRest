@@ -1,0 +1,25 @@
+{% for a in gm_items %}
+
+    <script type="text/ng-template" id="{{ a.gm_modal_id }}">
+
+
+        <form>
+            <div class="modal-header">
+                <h3 class="modal-title">{{ a.gm_modal_title }}</h3>
+            </div>
+            <div class="modal-body clearfix">
+                {{ a.gm_form }}
+            </div>
+            <div class="modal-footer">
+                {% for button in a.gm_buttons %}
+                    <button value="default action" class="btn btn-{{ button.type }}"
+                            ng-click="{{ button.func }}">{{ button.title }}</button>
+                {% endfor %}
+            </div>
+        </form>
+    </script>
+
+
+
+
+{% endfor %}

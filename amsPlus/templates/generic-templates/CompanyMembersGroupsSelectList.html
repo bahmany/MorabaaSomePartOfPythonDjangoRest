@@ -1,0 +1,30 @@
+<div id="companymembergroupselectdiv" style="display: none;" class="searchmem">
+
+    {% load pager_navigator_tags %}
+    {% pagerNavigator style="text-center" listname="groups" search_ng_model="GroupsSearchText" PageTo="GroupsPageTo" %}
+
+    <div ng-repeat="group in groups.results"
+         style="float: right;  padding: 10px;  border: solid 1px lightgrey;border-radius: 0px; width: 100%; border-top: none;">
+        <div style="display: block">
+            <div style="overflow: hidden; display: block; text-align: right; word-wrap: break-word">
+                <div>
+                    //group.title//
+                </div>
+                <div ng-repeat="member in group.members" class="well well-sm clearfix" style="font-size: 11px; margin-bottom:0px;">
+                    //member.profileName//
+                    <small>//member.chartName//</small>
+                    <div class="btn-group btn-group-xs pull-left">
+                        <i class="fa fa-search other-btn"></i>
+                        <i class="fa fa-arrow-circle-o-left other-btn" ng-click="addToSelected(member)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group btn-group-xs pull-left">
+                <i class="fa fa-arrow-circle-o-left other-btn" ng-click="addGroupToSelected(group)"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+
+</style>

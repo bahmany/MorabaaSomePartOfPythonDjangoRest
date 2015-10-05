@@ -1,0 +1,101 @@
+<div style="border: 1px solid #dddddd;
+  border-top: none;
+  padding: 10px 5px;
+  padding-bottom: 0;
+  border-radius: 0;" class="fit-height" id="bpmnModelerCtrl" ng-controller="bpmnModelerCtrl">
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding-bottom: 3px;">
+            <h3 class="panel-title clearfix">
+
+                <div class="form-group col-md-3">
+
+
+                    <input name="name" type="text" class="form-control underline"
+                           placeholder="name"
+                           ng-model="bpmn.name">
+
+                    <div class="alert alert-warning alert-dismissable" role="alert" ng-repeat="(key,val) in errors"
+                         ng-if="key == 'name'">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">
+       ×
+   </span>
+                        </button>
+                        <p ng-repeat="a in val">//a//</p>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input name="description" type="text" class="form-control underline"
+                           placeholder="description"
+                           ng-model="bpmn.description">
+
+                    <div class="alert alert-warning alert-dismissable" role="alert" ng-repeat="(key,val) in errors"
+                         ng-if="key == 'description'">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">
+       ×
+   </span>
+                        </button>
+                        <p ng-repeat="a in val">//a//</p></div>
+                </div>
+
+                <div class="form-group col-md-2 pull-right">
+                    <div class=" btn-group-justified ">
+
+
+                        <a id="js-save-diagram" class="btn btn-small btn-success fa fa-save" href
+                           title="download BPMN diagram">
+                        </a>
+                        <a id="js-download-diagram" class="btn btn-small btn-success fa fa-download" href
+                           title="download BPMN diagram">
+                        </a>
+
+
+                        <a id="js-download-svg" class="btn btn-small btn-success fa fa-image" href
+                           title="download as SVG image">
+
+                        </a>
+                        <a class="btn btn-small btn-danger fa fa-times" href ui-sref="company.process({companyid:companyId})">
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </h3>
+
+        </div>
+        <div class="panel-body clearfix">
+            <div class="conter-wrapper clearfix">
+
+
+                <link rel="stylesheet" href="/static/bower_components/bpmn-modeler/css/diagram-js.css"/>
+                <link rel="stylesheet"
+                      href="/static/bower_components/bpmn-modeler/vendor/bpmn-font/css/bpmn-embedded.css"/>
+                <link rel="stylesheet" href="/static/bower_components/bpmn-modeler/css/app.css"/>
+                <div class="col-md-5" style="margin: 124px auto;float: none;" id="start-edite-div">
+                    <span id="start-edite" class="btn btn-info btn-block btn-rounded" style="margin: 0 auto;">start design bpmn</span>
+                </div>
+                <div class="content" id="js-drop-zone">
+
+                    <div class="canvas" id="js-canvas"></div>
+                </div>
+
+
+                <script src="/static/bower_components/bpmn-modeler/index.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('.fit-height').css('height', window.innerHeight - 200 + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+</div>
+

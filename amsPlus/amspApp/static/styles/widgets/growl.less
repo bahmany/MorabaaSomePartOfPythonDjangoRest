@@ -1,0 +1,46 @@
+growl-notifications {
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    z-index: 1000;
+}
+
+growl-notifications {
+  growl-notification {
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 15px 30px;
+    width: 250px;
+    display: block;
+    border-radius: 5px;
+    margin-top: 15px;
+    border: 1px solid rgba(0,0,0,0.8);
+    .close {
+      color: #fff;
+      font-size: 16px;
+      margin-right: -10px;
+      margin-top: 2px;
+    }
+
+    &.growl-primary {
+      color: #FFF;
+      background: lighten(@brand-primary, 10%);
+      border: 1px solid darken(@brand-primary, 5%);
+    }
+    &.growl-error {
+      color: #FFF;
+      background: lighten(@brand-danger, 10%);
+      border: 1px solid darken(@brand-danger, 5%);
+    }
+    &.growl-info {
+      color: #FFF;
+      background: lighten(@brand-info, 10%);
+      border: 1px solid darken(@brand-info, 5%);
+    }
+    &.growl-warning {
+      color: #FFF;
+      background: lighten(@brand-warning, 10%);
+      border: 1px solid darken(@brand-warning, 5%);
+    }
+  }
+}

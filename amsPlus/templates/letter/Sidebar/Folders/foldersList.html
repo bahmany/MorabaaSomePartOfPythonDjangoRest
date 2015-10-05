@@ -1,0 +1,30 @@
+        <hr class="poor">
+        <h5 style="padding-right: 20px;">//"Folders"|translate//
+            <i
+                    class="fa fa-plus pull-left other-btn"
+                    ng-click="openFolderModal()"></i>
+        </h5>
+
+        <!-- Nested node template -->
+        <script type="text/ng-template" id="nodes_renderer.html">
+            <div ui-tree-handle style="font-size: 11px;" class="inbox-dynamic-items">
+                //node.title//
+                <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+                     class="pull-left btnss">
+                    <i ng-click="editFolderModal(node)" class="fa fa-edit other-btn"></i>
+                    <i ng-click="deleteFolder(node)" class="fa fa-trash other-btn"></i>
+                </div>
+            </div>
+            <ol ui-tree-nodes="" ng-model="node.children" style="padding-left: 0px;">
+                <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'"
+                    style="padding-left: 0px">
+                </li>
+            </ol>
+        </script>
+        <div ui-tree data-drag-enabled="false">
+            <ol ui-tree-nodes="" ng-model="treedata" id="tree-root">
+                <li ng-repeat="node in treedata" ui-tree-node ng-include="'nodes_renderer.html'"
+                    style="padding-left: 0px"
+                    on-finish-render="ngRepeatFinished"></li>
+            </ol>
+        </div>

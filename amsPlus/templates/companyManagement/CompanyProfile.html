@@ -1,0 +1,116 @@
+<div id="divProfileCompany" ng-controller="CompanyProfileCtrl" style="border: 1px solid #dddddd;
+  border-top: none;
+  padding: 10px 5px;
+  border-radius: 0;" class="fit-height" >
+
+
+
+
+
+    <div class="row" style="margin-bottom: -50px;position: relative;z-index: 999;float: right;">
+        {% load progress_btn %}
+        {% autoescape off %}
+            {% ProgressSuccessBtn FunctionName="UpdateProfile()" %}
+        {% endautoescape %}
+    </div>
+
+<div class="fit-height">
+
+    <pageheader pagename="Profile Management" subtitle="Profile Management" class="ng-scope"></pageheader>
+
+
+
+
+    <div class="panel" style="border: none;">
+        <div class="row">
+            <div class="col-md-12">
+                {% load img_with_uploader_tags %}
+                {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/default_company_profile_header_background.png" modelName="Profile.extra.background" controllerName="CompanyProfileCtrl" height="224px" imageContainerSize="col-md-12" imageContainerOtherCss="margin:0;border-radius:0;" %}
+            </div>
+        </div>
+        <div class="row">
+            {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="Profile.extra.logo" controllerName="CompanyProfileCtrl" height="100px" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="margin-top: -40px;width: 100px;height: 100px;" %}
+            <div class="col-md-3" style="margin-top:10px; "><h3 style="margin: 0;">
+                <input type="text" class="form-control underline" ng-model="Profile.extra.name" id="nameOfCompany" placeholder="//'Enter Company Name'|translate//">
+
+            </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default" style="border: none;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">//'briefcompanyintroduction' | translate//
+
+                    </h3>
+                </div>
+                <div class="panel-body ">
+
+  <textarea ckeditor="editorOptions"
+            ng-model="Profile.extra.biefIntroduction">
+        </textarea>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default" style="border: none;">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> //'companyintroduction' | translate//
+
+                    </h3>
+                </div>
+                <div class="panel-body ">
+
+                         <textarea ckeditor="editorOptions"
+                                   ng-model="Profile.extra.introduction">
+        </textarea>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.fit-height').css('height', window.innerHeight - 109 + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+    });
+
+</script>
+<style>
+
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0;
+    }
+
+    .edit-corner-small {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+    }
+
+    .phone-access-control i:hover {
+        cursor: pointer;
+        color: #004276;
+    }
+
+    .trash-phone {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+</style>
+
+
+</div>
+
+</div>

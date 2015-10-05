@@ -1,0 +1,19 @@
+    <script type="text/ng-template" id="labelCreateModal">
+        <form>
+            <div class="modal-header">
+                <h3 class="modal-title">//'labelModal'|translate//</h3>
+            </div>
+            <div class="modal-body clearfix">
+                <input ng-model="newLabel.title" placeholder="Enter title..." type="text"/>
+                <label>//'backgroundColor'|translate//
+                    <input ng-model="newLabel.bgcolor" type="color"/></label>
+                <label>//'textColor'|translate//
+
+                    <input ng-model="newLabel.color" type="color"/></label>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="saveLabel()" class="btn btn-success fa fa-save"></button>
+                <button ng-click="cancelLabel()" class="btn btn-danger fa fa-times"></button>
+            </div>
+        </form>
+    </script>

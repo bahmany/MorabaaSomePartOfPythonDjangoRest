@@ -1,0 +1,46 @@
+<div class="row">
+<div class="panel panel-success col-md-5 col-lg-4 col-sm-11 center-block" id="companyChart" style="display: none;">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+<strong>//'Charts'|translate//</strong>
+
+        </h3>
+    </div>
+
+    <div class="panel-body">
+        <form class="ng-pristine ng-valid">
+
+
+            {% load pager_navigator_tags %}
+            {% pagerNavigator style="text-center" listname="ChartSimpleList" search_ng_model="SearchChartList" PageTo="ChartPageTo" %}
+
+
+            <div style="width: 100%" ng-repeat="chart in ChartSimpleList.results track by $index">
+                <label class="checkbox1" for="Option//$index//">
+                    <input id="Option//$index//"
+                           type="checkbox"
+                           ng-model="chart.selected"
+                           ng-change="SelectDeselectChart(chart)">
+                    <span></span> </label>
+                <span>//chart.title//</span>
+            </div>
+
+
+
+
+
+            <button value="default action" class="btn btn-danger fa fa-times pull-right"
+                    ng-click="{{ cencelMethodName }}"></button>
+
+            <button value="default action" class="btn btn-success fa fa-save pull-right"
+                    ng-click="{{ postMethodName }}"></button>
+
+
+        </form>
+    </div>
+
+
+</div>
+
+
+</div>

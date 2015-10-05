@@ -1,0 +1,30 @@
+<div ng-controller="LetterInboxCtrl" style="overflow-x: auto; border-radius: 0px;">
+
+
+    <div class="butt-container">
+
+
+        <button
+                ng-click="Compose()"
+                type="button"
+                class="btn btn-primary btn-block btn-rounded">
+            //"Compose"|translate//
+        </button>
+
+
+    </div>
+
+
+    <ul class="main-options" style="padding-right: 0px;">
+        {% include "letter/Sidebar/publicItems.html" %}
+        {% include "letter/Sidebar/Folders/foldersList.html" %}
+        {% include "letter/Sidebar/Labels/labelsList.html" %}
+        {% include "letter/Sidebar/MembersGroups/groupMembersList.html" %}
+    </ul>
+
+    {% include "letter/Sidebar/Folders/base.html" %}
+    {% include "letter/Sidebar/Labels/base.html" %}
+    {% include "letter/Sidebar/MembersGroups/base.html" %}
+
+</div>
+</div>

@@ -1,0 +1,167 @@
+<div ng-controller="FriendsCtrl">
+    <div id="profileList" class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title col-md-3">
+                    //'Find Friends or Members' | translate//
+
+                </h3>
+
+                <div class=" col-md-8 pull-right" style="  margin-top: -10px;
+  margin-bottom: -8px;">
+
+                    {% load pager_navigator_tags %}
+                    {% pagerNavigator style="text-center" listname="SearchPersons" search_ng_model="ProfileSearchText" PageTo="ProfilePageTo" %}
+
+
+                    {#                    <input#}
+                    {#                            type="text"#}
+                    {#                            class="form-control underline"#}
+                    {#                            placeholder="search users..."/>#}
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+
+                <div class="row"
+                     ng-repeat="person in SearchPersons.results track by $index"
+                     style="padding:7px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
+                    <div class="col-md-2"
+                         style="height: 100px;background: url('//person.AvatarUrl//');background-size: contain; background-repeat: no-repeat; background-position: center"></div>
+
+                    <div class="col-md-10" style="height: 100px;overflow: hidden;">
+                        <h4 style="margin: 0">
+                            // person.Name //
+                        </h4>
+
+                        <small>
+                            // person.AboutTitle //
+                        </small>
+
+
+                        <p ng-bind-html="person.AboutDetail" style="font-size:13px; "></p>
+
+
+
+                        <div class="btn-group btn-group-xs">
+                            <button class="btn btn-default btn-xs fa fa-search"
+                                    tooltip="//'View profile'|translate//"></button>
+                            <button class="btn btn-default btn-xs fa fa-sitemap" ng-click="OpenInviteModal(person)"
+                                    tooltip="//'Send membership invitation'|translate//"></button>
+                            <button class="btn btn-default btn-xs fa fa-users"
+                                    tooltip="//'Send friendship invitation'|translate//"></button>
+                            <button class="btn btn-default btn-xs fa fa-envelope-o"
+                                    tooltip="//'Send message'|translate//"></button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="invList" class="col-md-5 hide">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Invitations
+                    <small><a ng-click="CloseInvModal()">(//'Close' | translate//)</a>
+                    </small>
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                <form class="ng-pristine ng-valid">
+                    <h3>
+                        //SelectedPerson.Name//
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-6 well well-sm">
+                            <form class="ng-pristine ng-valid">
+
+                                <h3><strong>//'All Charts'|translate//</strong></h3>
+                                <small>//'Select to invite'|translate//</small>
+
+                                {% load pager_navigator_tags %}
+                                {% autoescape off %}
+                                    {% pagerNavigator style="text-center" listname="ChartSimpleList" search_ng_model="ChartSearch" PageTo="ChartPageTo" %}
+                                {% endautoescape %}
+                                <div class="well well-sm" style="color: white"
+                                     ng-class="chart.isEmpty ? 'emptyclass':'filledclass'"
+                                     ng-repeat="chart in ChartSimpleList.results track by $index">
+                                    <label class="checkbox1 pull-right" for="Option//$index//_//chart.isEmpty//"
+                                           tooltip="//'Click here to send/remove invitation'|translate//">
+                                        <input id="Option//$index//_//chart.isEmpty//"
+                                               type="checkbox"
+                                               ng-model="chart.selected"
+                                               ng-change="SelectDeselectChart(chart)">
+                                        <span></span> </label>
+
+                                    <span>//chart.title// <br><small>//chart.CompanyName//</small></span>
+                                    <h3 ng-if="chart.isEmpty">//'Empty Position' | translate//</h3>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <div class="col-md-6  well well-sm">
+                            <h3>//'Invitation'|translate//</h3>
+                            <small>//'See selected user invitations'|translate//</small>
+                            {% pagerNavigator style="text-center" listname="Invitations" search_ng_model="InvitationsSearch" PageTo="InvitationsPageTo" %}
+                            <div ng-repeat="inv in Invitations.results" class="well well-sm clearfix"
+                                 style="background-color: #1f9d45; color: white">
+
+                                <strong>//inv.companyName//</strong><br>
+                                <small>
+                                    //inv.chartName// <span ng-if="inv.isEmpty" style="font-weight: bold">(//'Empty Position'|translate//)</span>
+                                </small>
+                                <br>
+                                <small>//inv.dateOfPost//</small>
+
+                                <div class="btn-group btn-group-xs pull-right">
+                                    <button class="btn btn-default btn-xs fa fa-sign-in"
+                                            ng-click="ApproveInvitation(inv)"
+                                            tooltip="//'Click here to approve'|translate//"
+                                            >
+
+                                    </button>
+                                    <button
+                                            class="btn btn-default btn-xs fa fa-trash-o"
+                                            ng-click="RemoveInvitation(inv)"
+                                            tooltip="//'Click here to remove invitation'|translate//"
+                                            >
+
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.fit-height').css('height', window.innerHeight + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+        });
+
+    </script>
+    <style>
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 0;
+        }
+    </style>
+</div>

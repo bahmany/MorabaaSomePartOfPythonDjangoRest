@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/amspApp/static/angularThings/others/fitlers/moment-jalaali.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/amspApp/static/angularThings/others/fitlers/moment.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/amspApp/static/bower_components/d3/d3.geom.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/amspApp/static/bower_components/d3/d3.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/amspApp/static/bower_components/d3/d3.layout.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/locale/en" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/locale/fa" charset="UTF-8" />
+  </component>
+</project>

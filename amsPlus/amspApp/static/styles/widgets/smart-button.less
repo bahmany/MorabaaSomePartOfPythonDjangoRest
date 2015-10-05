@@ -1,0 +1,124 @@
+.smart-button {
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 3em;
+
+    position: relative;
+    overflow: hidden;
+
+    -webkit-transition: all 2s;
+    -o-transition: all 2s;
+    transition: all 2s;
+
+    //background: black;
+
+    .content {
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        transition: all 0.4s;
+    }
+
+    .content:after {
+        font-family: FontAwesome;
+        content: "\f00c";
+        position: absolute;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+    }
+
+    .content:before {
+        font-family: FontAwesome;
+        content: "\f00d";
+        position: absolute;
+        left: 0;
+        right: 0;
+        transform: translateY(-100%);
+    }
+
+    .normal-progress {
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        transition: all 0.4s;            
+    }
+
+
+    &.loading {
+    }
+
+    &.loading-add {
+        //background: yellow;
+        .normal-progress {
+            opacity: 1;
+        }
+    }
+
+    &.loading-add-active {
+        //background: red;
+    }
+
+    &.loading-remove {
+
+        animation-duration: 1s;
+        -webkit-animation-duration: 1s;
+
+        &.success {
+
+            .content {
+                transform: translateY(-100%);
+            }
+        }
+
+        &.fail {
+            .content {
+                transform: translateY(100%);
+            }
+        }
+
+
+    }
+
+    &.loading-remove-active {
+        //background: blue;
+        .normal-progress {
+            /*-webkit-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+            opacity: 0;*/
+        }
+
+    }
+
+
+    .normal-progress {
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        height: 100%;
+        background: rgba(0,0,0,0.2);
+
+    }
+
+    .content {
+    }
+
+    .content.loading {
+    }
+
+/*    .content {
+        padding-top: -50%;
+    }
+
+    .content::after {
+        content: '#';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+    }
+*/
+
+
+}

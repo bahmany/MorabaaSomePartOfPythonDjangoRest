@@ -1,0 +1,23 @@
+        <hr class="poor">
+        <h5 style="padding-right: 20px;">//"Labels"|translate//
+            <i
+                    class="fa fa-plus pull-left other-btn"
+                    ng-click="createLabel(false)">
+            </i>
+        </h5>
+
+        <li ng-repeat="item in labels.results" on-finish-render="ngRepeatFinished"
+            style="line-height: 17px; padding-right: 0px;"
+            class="inbox-dynamic-items">
+            <span style="background-color://item.bgcolor//; color://item.color//; padding:2px; border-radius: 0px;margin-left: 5px; margin-right: 5px; font-size: 10px;">A</span>
+            <a ng-click="searchLabel(item)" style="max-width: 100px;display: inline;">//item.title//
+                <small>(//item.count//)</small>
+            </a>
+
+            <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+                 class="pull-left btnss">
+                <i ng-click="editLabel(item)" class="fa fa-edit other-btn"></i>
+                <i ng-click="deleteLabel(item)" class="fa fa-trash other-btn"></i>
+            </div>
+
+        </li>

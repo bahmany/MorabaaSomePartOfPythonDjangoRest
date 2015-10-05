@@ -1,0 +1,154 @@
+#body-container {
+	margin-left: @nav-width;
+	padding: 10px;
+	margin-top: 50px;
+	overflow: auto;
+	.transition;
+
+	.home-stats {
+		.hvr-wobble-horizontal {
+			display: block;
+		}
+		a {
+			color: inherit;
+		}
+	}
+	.home-charts-middle {
+		.chart-container {
+			.box;
+			position: relative;
+			min-height: 285px;
+			overflow: hidden;
+			padding: 15px;
+			.chart-comment {
+			    position: absolute;
+			    left: 15px;
+			    top: 15px;
+			    .comment-header {
+					font-weight: 600;
+					font-size: 23px;
+				}
+				.comment-comment {
+					font-size: 13px;
+				}
+			}	
+		}
+	}
+	.home-charts-right {
+	
+		.top-right-chart {
+			.box;
+
+			.c3 svg {
+				margin-bottom: -12px;
+			}
+			.c3-axis-x text {
+				fill: none;
+			}
+			.c3-axis-y text {
+				fill: none;
+			}
+			.c3 path {
+				stroke: none;
+			}
+			.c3 line {
+				stroke: none;
+			}
+		}
+		.top-left-chart {
+			.box;
+			margin-top: 10px;
+			text-align: center;
+			#pie-chart {
+				margin-top: 6px;
+			}
+			.c3-chart-arc text {
+				display: none;
+			} 
+		}
+	}
+	.piechart-container {
+		display: inline-block;
+		.chart1, .chart2, .chart3 {
+			.box;
+			display: inline-block;
+			
+			width: 100%;
+			text-align: center;
+			.easypie {
+				padding: 7px;
+			}
+			.chart-header {				
+				height: 28px;
+				padding-top: 3px;
+				margin-bottom: 2px;
+				font-size: 15px;
+				font-weight: 600;
+			}
+		}
+		.chart1 {
+			.chart-header {
+				background: @brand-warning;
+				color: white;
+			}	
+		}
+		.chart2 {
+			.chart-header {
+				background: @brand-primary;
+				color: white;
+			}	
+		}
+		.chart3 {
+			.chart-header {
+				background: @brand-danger;
+				color: white;
+			}	
+		}
+	}
+	
+}
+#bar-chart {
+	overflow: hidden;
+}
+
+.box {
+	background-color: #fff;
+	border: solid 1px @border-color;
+}
+
+.heading {
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+
+@media (max-width: 767px) {
+	.home-charts-right {
+		margin-top: 13px;
+		margin-bottom: 13px;
+	}
+	.todo-container {
+		margin-top: 13px;
+		margin-bottom: 13px;
+	}
+}	
+
+
+@media(max-width: 767px) {
+  #body-container {
+    margin-left: 0;
+    width: 100%;
+  } 
+  .dashboard-page {
+    margin-left: -@nav-width;
+    position: static;
+
+    &.push-right {
+      margin-left: 0;
+      #body-container {
+        margin-left: @nav-width;
+      } 
+    }
+  }
+}

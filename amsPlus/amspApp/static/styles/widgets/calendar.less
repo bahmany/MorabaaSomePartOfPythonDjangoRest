@@ -1,0 +1,55 @@
+div.calendar-container {
+	.fc {
+		* {
+		border: none !important;
+		}
+	}
+	.fc-ltr {
+		font-size: 11px !important;
+	}
+	.fc-today {
+		background: darken(@brand-primary, 10%);
+	}
+	.fc-header {
+		margin-left: -12px;
+		width: 189px !important;
+		max-height: 27px !important;
+		background: darken(@brand-primary, 10%);
+	}
+	.fc-header-title {
+		h2 {
+			font-size: 13px !important;
+			font-weight: 600;
+			margin-bottom: 0 !important;
+			text-transform: uppercase;
+			padding-left: 12px;
+			padding-top: 6px;
+		}
+	}
+	.fc-button-today {
+		display: none;
+	}
+	.fc-header-right {
+		font-size: 9px !important;
+		.fc-button {
+			background: inherit;
+			border: none;
+			color: inherit;
+			box-shadow: none;
+			padding-top: 4px;
+		}
+		.fc-button-prev {
+			padding-right: 0;
+		}
+		.fc-button-next {
+			padding-left: 0;
+		}
+		
+	}
+	.fc-content {
+		margin-top: 4px;
+	}
+	.fc-day-header {
+		font-size: 10px;
+	}
+}

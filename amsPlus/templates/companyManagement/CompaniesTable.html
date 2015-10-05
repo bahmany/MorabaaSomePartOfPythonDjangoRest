@@ -1,0 +1,17 @@
+<pageheader pagename="{{ gt_object_name_capital }}Table" subtitle="Bootstrap UI Elements"></pageheader>
+
+<div class="conter-wrapper" ng-controller="{{ gt_object_name }}TableCtrl">
+
+    <style>
+        .pagination {
+            margin-bottom: 0;
+        }
+    </style>
+
+    {% include table_template %}
+
+    {% include edit_modal %}
+
+    <br/>
+</div>
+

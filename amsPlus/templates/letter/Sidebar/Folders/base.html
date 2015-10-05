@@ -1,0 +1,42 @@
+   <script type="text/ng-template" id="FolderModal">
+        <form>
+            <div class="modal-header">
+                <h3 class="modal-title">//'Folders'|translate//</h3>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="form-group">
+                    <label for="selectParentDrop">//'Parent Folder'|translate//</label>
+                    <select id="selectParentDrop" ng-model="folder.parentID"
+                            ng-options="item.id as item.title for item in listFolder">
+                        <option value="">--//'Root'|translate//--</option>
+                        {#                        <option ng-repeat="item in listFolder" value="//item.id//">#}
+                        //item.title//
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+
+
+                    <label for="selectPublic">//'Parent Folder'|translate//</label>
+                    <select id="selectPublic" ng-model="folder.isPublic" ng-init="folder.isPublic=0">
+                        <option value=0>
+                            //"Private"|translate//
+                        </option>
+                        <option value=1>
+                            //"Public"|translate//
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="FolderName">//'Name'|translate//</label>
+                    <input ng-model="folder.title">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <buttun ng-click="saveFolder()" class="btn btn-success fa fa-save"></buttun>
+                <buttun ng-click="cancelFolder()" class="btn btn-danger fa fa-times"></buttun>
+            </div>
+        </form>
+    </script>

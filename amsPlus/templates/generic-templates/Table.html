@@ -1,0 +1,101 @@
+<div class="row">
+    <style>
+        .bg-selected {
+            background: rgb(229, 229, 229);
+        }
+    </style>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title inline">
+                    // '{{ gt_table_title }}' | translate //
+                    {% if gt_create_func %}
+                        <div class="btn btn-primary fa fa-plus " ng-click="{{ gt_create_func }}">
+
+                        </div>{% endif %}
+
+<div class="col-md-5 pull-right">
+    <div class="col-md-9">
+                    <input type="text" class="form-control input-sm underline"
+                           placeholder="// 'Searchhere...' | translate //"
+                           ng-model="searchInput"
+                           ng-keyup="{{ gt_search_func }}"
+                           style="margin-bottom: 8px;">
+</div>
+<div class="col-md-3">
+               <small style="color: #000000">
+
+                        // 'all{{ gt_object_name }}' | translate // : // totalItemsCount //
+                   <br/>
+
+                        // 'resaultfounded' | translate // : // foundedItemsCount //
+
+                    </small>
+           </div>
+</div>
+
+
+
+
+
+
+
+
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        {% for data_title in gt_datas_title %}
+                            <th>// '{{ data_title }}' | translate //</th>
+                        {% endfor %}
+                        <th>// 'itemsperpage' | translate //&nbsp;&nbsp;
+                            <div style="width:50px;padding:2px;display: inline-block;margin-bottom: -2px;">
+                                <select class="form-control input-sm"
+                                        style="padding:2px;line-height: 24px;height: 24px;"
+                                        ng-model="itemsPerPage">
+                                    <option value="14" selected="selected">14</option>
+                                    <option value="24">24</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="obj in data.results">
+                        {% for data_dbtitle in gt_datas_dbtitle %}
+                            <td>// obj.{{ data_dbtitle }} //</td>
+                        {% endfor %}
+
+                        <td class="{% if gt_func_col %}  {{ gt_func_col }}{% else %}col-md-4{% endif %}">
+                            <div class="btn-group btn-group-justified">
+                                {% for button in gt_buttons %}
+
+                                    <div class="btn-group" role="group">
+                                        <button type="button"
+                                                class="btn  btn-sm btn-//({{ button.is_toggle }}) && (obj.{{ button.is_toggle_func }}==true) || !({{ button.is_toggle }}) ? '{{ button.type }}' : '{{ button.type2 }}'//"
+                                                ng-click="{{ button.func }}">
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="clearfix">
+            <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"
+                        max-size="maxSize" class="pagination-sm"
+                        boundary-links="true" rotate="true" num-pages="numPages"></pagination>
+            <div style="vertical-align: bottom;display: inline-block;margin-top: -33px;padding-bottom: 9px;">// 'from' |
+                translate // // itemsFrom // // 'to' | translate // //itemsTo//
+
+            </div>
+
+        </div>
+    </div>
+</div>

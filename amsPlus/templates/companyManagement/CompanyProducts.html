@@ -1,0 +1,180 @@
+<div id="CompanyMembersCtrl" ng-controller="CompanyProductsCtrl" class="fit-height"  style="border: 1px solid #dddddd;
+  border-top: none;
+  padding: 10px 5px;
+  border-radius: 0;">
+    <div class="panel panel-default" id="pnlProductionList">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                //'productionslist' | translate //
+
+
+            </h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="text-center" ng-if="Productions.results.length > 0">
+                <br>
+
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-xs btn-default fa fa-chevron-left"
+                            ng-class="{'disabled': !Productions.previous}"
+                            ng-click="PageTo(Productions.previous)"></button>
+                    <button type="button" class="btn btn-xs btn-default fa fa-chevron-right"
+                            ng-class="{'disabled': !Productions.next}" ng-click="PageTo(Productions.next)"></button>
+                </div>
+                // 'registeredcount' | translate //://Productions.count//
+                // 'inthefollowinglistonly15itemsarevisibleyoucanseeothersbypaging' | translate //
+            </div>
+
+            <div class="comments-here media well well-sm" ng-repeat="product in Productions.results track by $index">
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote><h4>// product.name//</h4></blockquote>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                          <img ng-src="//product.extra.DefaultProductionImage//"
+                                     style="width: 150px; height: 150px;padding: 5px;">
+                    </div>
+                    <div class="col-md-9">
+                        <p ng-bind-html="product.extra.ProductionDetails" style="word-break: break-word;">
+
+                                </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 pull-right"> <div class="btn-group btn-group-xs">
+                                <button type="button" tooltip="//'like' | translate//"
+                                        class="btn btn-default btn-xs fa fa-thumbs-up"></button>
+                                <button type="button" tooltip="//'follow' | translate//"
+                                        class="btn btn-default btn-xs fa fa-thumb-tack"></button>
+                                <button type="button" tooltip="//'needit' | translate//" class="btn btn-default btn-xs">
+                                    i need it
+                                </button>
+                                <button type="button" tooltip="//'edit' | translate//"
+                                        ng-click="EditThisProduct(product)"
+                                        class="btn btn-default btn-xs fa fa-pencil"></button>
+                                <button type="button" ng-click="DeleteThisCompamy(product, $index)"
+                                        tooltip="//'delete' | translate//"
+                                        class="btn btn-default btn-xs fa fa-trash"></button>
+
+
+                            </div></div>
+                </div>
+
+
+
+            </div>
+
+
+            <div ng-hide="Productions.results.length > 0">
+                <div class="media-body">
+                    <h5 class="media-heading text-center text-danger">
+                        You dont have enter any productions or services for your company.!
+                        <br>
+               <span class="text-muted text-center">
+            click add to introduce your productions
+        </span></h5>
+
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="text-center">
+                <button class="btn btn-primary fa fa-plus btn-lg" data-toggle="modal" tabindex="-1" type="button"
+                        ng-click="AddNewProduction()"
+                        data-target="#addUpdateCompanyProductionModal" tooltip="//'Addnewproduction' | translate//">
+                </button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="panel panel-default" id="divAddNewProduction" style="display: none;">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                // 'add_edit_company_production' | translate //
+                <div class="panel-control pull-right"><a class="panelButton"><i class="fa fa-refresh"></i></a> <a
+                        class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i
+                        class="fa fa-remove"></i></a></div>
+            </h3>
+        </div>
+
+        <div class="panel-body">
+            <form class="ng-pristine ng-valid">
+
+                <div class="form-group">
+                    <label for="titleOfProduction">//'titleofproduction' | translate //</label>
+                    <input type="text"
+                           class="form-control underline"
+                           id="titleOfProduction"
+                           ng-model="NewProduction.name"
+                           placeholder="//'enteryourproductionnamehere' | translate //">
+                </div>
+
+                <table class="col-md-12">
+                    <tbody>
+                    <tr>
+                        <td style="vertical-align: top;width:150px; ">
+                            <div class="form-group">
+
+                                <label>//'productionLogo' | translate //</label>
+                                <br>
+
+                                {% load img_with_uploader_tags %}
+
+                                {% ImageWithUploaderForDefaultPicOfCompanyProduct modelName="NewProduction.extra.DefaultProductionImage" controllerName="companiesManagmentCtrl" width="150px" height="150px" %}
+
+                            </div>
+                        </td>
+                        <td style="vertical-align: top;">
+                            <div class="form-group">
+                                <label>//'productiondetails' | translate //</label>
+
+                            <textarea
+                                    style="width: 100%"
+                                    ckeditor="editorOptions"
+                                    ng-model="NewProduction.extra.ProductionDetails"
+
+                                    >
+                            </textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <button value="default action" class="btn btn-danger fa fa-times pull-right"
+                        ng-click="CancelProduction()"></button>
+
+                <button value="default action" class="btn btn-success fa fa-save pull-right"
+                        ng-click="SaveProduction()"></button>
+
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.fit-height').css('height', window.innerHeight + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+            $('#body-container').css('overflow', 'hidden');
+        });
+
+    </script>
+    <style>
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 0;
+        }
+    </style>
+</div>

@@ -1,0 +1,31 @@
+        <hr class="poor">
+        <h5 style="padding-right: 10px;">//"Groups"|translate//
+            <i
+                    class="fa fa-plus pull-left other-btn"
+                    ng-click="createGroup(false)">
+            </i>
+        </h5>
+
+
+        <li ng-repeat="item in groups" on-finish-render="ngRepeatFinished"
+            style="line-height: 17px; padding-right: 5px;"
+            class="inbox-dynamic-items">
+            <div tooltip="//'Members Count'|translate//"
+                 style="width: 25px; text-align: center; background-color: #7b777b; float: right; font-size: 10px;">
+                //item.memberCount//
+            </div>
+            <div tooltip="//'Letters Count'|translate//"
+                 style="width: 25px; text-align: center; background-color: #7b777b; float: right; font-size: 10px; margin-left: 10px;">
+                //item.count//
+            </div>
+
+            <a style="max-width: 100px;display: inline;">//item.title//
+            </a>
+
+            <div style="max-width: 40px;display: none; font-size: 13px;margin-top: 3px; margin-left: 10px;"
+                 class="pull-left btnss">
+                <i ng-click="editGroup(item)" class="fa fa-edit other-btn"></i>
+                <i ng-click="deleteGroup(item)" class="fa fa-trash other-btn"></i>
+            </div>
+
+        </li>

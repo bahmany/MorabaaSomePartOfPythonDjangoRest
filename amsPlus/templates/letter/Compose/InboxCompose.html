@@ -1,0 +1,88 @@
+<div class="compose-container" class="wrap-message" ng-controller="LetterComposeCtrl">
+
+        <div id="divMessage" class="wrap-compose hideIt" style="border-radius:0px;">
+            <div class="mail-header">
+                <h4>//'newLetter'|translate//</h4></div>
+            <div class="receipient">
+                <strong class="to">//'to'|translate// </strong>
+                &nbsp;&nbsp;&nbsp;
+                <span class="other-btn" ng-if="!(selectedPositions)"
+                      ng-click="selectPositions()">...</span>
+
+                        <span class="label label-primary" ng-repeat="position in selectedPositions">
+                            //position//
+                        </span></div>
+            <div class="receipient">
+                <strong class="to">//'CC'|translate// </strong>
+                &nbsp;&nbsp;&nbsp;
+                <span class="btn btn-default btn-sm" ng-if="!(selectedPositions)"
+                      ng-click="selectPositions()">//'selectPerson'|translate//</span>
+                        <span class="label label-primary" ng-repeat="position in selectedPositions">
+                            //position//
+                        </span></div>
+            <div class="subject">
+                <strong class="strong-header">//'subject'|translate//</strong>
+                <strong class="subjetc">
+                    <input type="text" ng-model="letter.subject" style="border: none;"
+                           placeholder="Enter letter subject ..."/>
+                </strong>
+            </div>
+            <div text-angular data-ng-model="letter.text"></div>
+            <div data-ngf-drop="uploadFiles($files)" class="drop-box"
+                 data-ngf-drag-over-class="dragover" data-ngf-multiple="true"
+                 data-ngf-pattern="'image/*,application/pdf'">
+                <p style="font-size:30px;padding:50px 0 0 0;">
+                    //'DropImageorPDFsfileshere'|translate//</p>
+            </div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+            <div class="send-footer">
+                <button type="button" class="btn btn-primary btn-rounded"> Send</button>
+                &nbsp;&nbsp;&nbsp;<a data-ngf-select data-ng-model="files" data-ngf-multiple="true"><i
+                    class="fa fa-paperclip"></i></a> <a><i class="fa fa-trash-o pull-right"></i></a>
+            </div>
+        </div>
+
+
+    <div id="divSelects" class="wrap-compose hideIt">
+        <div class="mail-header">
+            <h4>//'Select Recievers'|translate//</h4>
+        </div>
+        <div>
+            <div style="max-width: 300px; float: right" class="col-md-6 well well-sm">
+                <div class="btn-group btn-group-xs">
+                    <button class="btn btn-default" ng-click="OpenSearch('companymemberzoneselectdiv')">
+                        //'Zones'|translate//
+                    </button>
+                    <button class="btn btn-default" ng-click="OpenSearch('companymemberchartselectdiv')">
+                        //'Positions'|translate//
+                    </button>
+                    <button class="btn btn-default" ng-click="OpenSearch('companymemberselectdiv')">
+                        //'Members'|translate//
+                    </button>
+                    <button class="btn btn-default" ng-click="OpenSearch('companymembergroupselectdiv')">
+                        //'Groups'|translate//
+                    </button>
+                </div>
+
+                {% load company_members_select_tags %}
+                {% load company_members_chart_select_tags %}
+                {% load company_members_zones_select_tags %}
+                {% load company_members_groups_select_tags %}
+
+                {% CompanyMembersZoneSelectTag %}
+                {% CompanyMembersChartSelectTag %}
+                {% CompanyMembersSelectTag %}
+                {% CompanyMembersGroupSelectTag %}
+
+
+            </div>
+            {% load company_members_compose_selected_tags %}
+            {% CompanyMembersComposeSelectedTag %}
+
+        </div>
+
+
+    </div>
+
+
+</div>

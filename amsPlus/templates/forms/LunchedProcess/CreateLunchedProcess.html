@@ -1,0 +1,10 @@
+{% load rest_framework %}
+
+<form class="form-horizontal ng-pristine ng-valid" role="form" novalidate="">
+
+    {% render_field form.name style=style %}
+    {% render_field form.bpmn style=style %}
+
+{#    <label for="selectBpmn">select bpmn<select name="selectBpmn" id="selectBpmn" ng-model="bpmnSelected"#}
+{#                                    ng-options="obj.id as obj.name for obj in bpmns"></select></label>#}
+</form>

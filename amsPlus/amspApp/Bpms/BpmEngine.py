@@ -1,0 +1,106 @@
+# -*- coding: utf-8
+from copy import copy
+import io
+import pickle
+
+import sys, os
+from SpiffWorkflow.bpmn.BpmnWorkflow import BpmnWorkflow
+from SpiffWorkflow.bpmn.parser.ValidationException import ValidationException
+from SpiffWorkflow.bpmn.parser.util import *
+from amspApp.Bpms.MyPackager import MyPackager
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../lib'))
+
+from SpiffWorkflow.specs import *
+
+from SpiffWorkflow import Task, Workflow
+from SpiffWorkflow.storage import XmlSerializer
+
+from SpiffWorkflow.bpmn.storage.BpmnSerializer import BpmnSerializer
+from SpiffWorkflow.bpmn.storage.Packager import Packager
+from SpiffWorkflow.bpmn.specs.UserTask import UserTask as UserTaskSpecBpmn
+from SpiffWorkflow.bpmn.specs.EndEvent import EndEvent as EndEventSpecBpmn
+from amspApp.Bpms.models import LunchedProcess
+
+
+class BpmEngine(object):
+    def __init__(self, xml, forms, userTasks, taskObjId):
+        self.serializer = BpmnSerializer()
+        self.package = io.BytesIO()
+        self.forms = forms
+        self.taskObjId = taskObjId
+        self.userTasks = userTasks
+        package = MyPackager(self.package, 'Process_1')
+        self.xml = xml
+        package.add_bpmn_file(self.xml)
+        package.create_package_xml()
+        self.wf_spec = self.serializer.deserialize_workflow_spec(self.package)
+        # self.taken_path = self.track_workflow(self.wf_spec)
+        self.workflow = BpmnWorkflow(self.wf_spec)
+
+    def run(self):
+        workflow = self.workflow
+        condition_keys = []
+        while not workflow.is_completed():
+            tasks = workflow.get_tasks(Task.READY)
+
+            for t in tasks:
+                obj = LunchedProcess.objects.get(pk=self.taskObjId)
+                amir = copy(obj.formData)
+                t.set_data(**amir)
+                if type(t.task_spec) == UserTaskSpecBpmn:
+                    for ut in self.userTasks:
+                        if ut['taskId'] == t.task_spec.name:
+                            obj.thisPerformer = ut['performer']
+                            obj.thisStep = ut['taskId']
+                            obj.engineInstance = pickle.dumps(self)
+                            obj.save()
+                    return
+
+                if hasattr(t.task_spec, "cond_task_specs"):
+                    for cond, name in t.task_spec.cond_task_specs:
+                        for cond_unit in cond.args:
+                            if hasattr(cond_unit, "name"):
+                                condition_keys.append(cond_unit.name)
+
+            # for t in tasks:
+            # t.set_data(**self.userTasks)
+
+            workflow.complete_next()
+
+    def keep_going(self, requestData=None, databaseData=None):
+        workflow = self.workflow
+        condition_keys = []
+        while not workflow.is_completed():
+            tasks = workflow.get_tasks(Task.READY)
+            for t in tasks:
+                obj = LunchedProcess.objects.get(pk=self.taskObjId)
+                amir = copy(obj.formData)
+                if not amir ==None:
+                    t.set_data(**amir)
+
+                if not obj.thisStep == t.task_spec.name:
+                    if type(t.task_spec) == EndEventSpecBpmn:
+                        obj.engineInstance = pickle.dumps(self)
+                        obj.thisStep=t.task_spec.name
+                        obj.thisPerformer = None
+                        obj.isComplete = True
+                        obj.save()
+
+                    if type(t.task_spec) == UserTaskSpecBpmn:
+                        for ut in self.userTasks:
+                            if ut['taskId'] == t.task_spec.name:
+                                obj.thisPerformer = ut['performer']
+                                obj.thisStep = ut['taskId']
+                                obj.engineInstance = pickle.dumps(self)
+                                obj.save()
+                        return
+
+
+                if hasattr(t.task_spec, "cond_task_specs"):
+                    for cond, name in t.task_spec.cond_task_specs:
+                        for cond_unit in cond.args:
+                            if hasattr(cond_unit, "name"):
+                                condition_keys.append(cond_unit)
+
+            workflow.complete_next()

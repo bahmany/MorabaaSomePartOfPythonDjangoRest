@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            //'Companies Managment' | translate//
+                <small><a href="#/dashboard/Companies">(back)</a></small>
+
+
+            <div class="panel-control pull-right"><a class="panelButton"><i class="fa fa-refresh"></i></a> <a
+                    class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i
+                    class="fa fa-remove"></i></a></div>
+        </h3>
+    </div>
+    <div class="panel-body clearfix">
+
+        <div class="row clearfix" style="background-color: white">
+            <tabset justified="true">
+                <tab heading="profile" ui-sref="company.profile({ 'companyid': companyId })"></tab>
+                <tab heading="chart" ui-sref="company.chart({ 'companyid': companyId })"></tab>
+                <tab heading="members" ui-sref="company.members({ 'companyid': companyId })"></tab>
+                <tab heading="products" ui-sref="company.products({ 'companyid': companyId })"></tab>
+                <tab heading="process" ui-sref="company.process({ 'companyid': companyId })"></tab>
+                <tab heading="secretariats" ui-sref="company.secretariats({ 'companyid': companyId })"></tab>
+                <tab heading="other" ui-sref="company.other({ 'companyid': companyId })"></tab>
+            </tabset>
+        </div>
+
+        <div class="row">
+            <div class="ui-view-container">
+                <div class="ui-view-container" ui-view />
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+

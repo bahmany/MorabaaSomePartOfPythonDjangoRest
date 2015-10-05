@@ -1,0 +1,917 @@
+<pageheader pagename="Profile Management" subtitle="Profile Management" class="ng-scope"></pageheader>
+
+
+<div style="padding: 0;" ng-controller="profileCtrl">
+    <div class="row">
+        <div class="col-md-5 ">
+            <div class="row" style="
+                        margin-bottom: -50px;
+                        position: relative;
+                        z-index: 999;
+                        float: right;
+">
+                {% load progress_btn %}
+                {% autoescape off %}
+                    {% ProgressSuccessBtn FunctionName="UpdateProfile()" %}
+                {% endautoescape %}
+            </div>
+            <div class="fit-height">
+
+                <div class="row">
+
+                    {% load img_with_uploader_tags %}
+                    {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/default_company_profile_header_background.png" modelName="Profile.extra.profileHeaderBackground.url" controllerName="profileCtrl" height="250px" imageContainerSize="col-md-12" imageContainerOtherCss="margin:0;border-radius:0;" %}
+
+
+                </div>
+
+                <div class="row">
+                    {% ImageWithUploader defaultEmptyAvatarUrl="/static/images/avatar_empty.png" modelName="Profile.extra.profileAvatar.url" controllerName="profileCtrl" height="100px" imageContainerSize="col-md-4 profile-pic" imageContainerOtherCss="margin-top: -40px;width: 100px;height: 100px;" %}
+
+                    <div class="col-md-8" style="margin-top:10px; "><h3 style="margin: 0;">
+                        <input type="text" class="form-control input-sm underline"
+                               style="display: inline-block;margin-bottom: 2px"
+                               placeholder="//'enteryourname'|translate//"
+                               ng-model="Profile.extra.Name"/>
+
+                    </h3>
+                        <input type="text" class="form-control input-sm underline" style="font-size: 13px;"
+                               placeholder="//'occupation'|translate//"
+                               ng-model="Profile.extra.Title"/>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">//'About me' | translate//
+
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <div class="col-md-12">
+                                 <textarea
+                                         ckeditor="editorOptions"
+                                         ng-model="Profile.extra.AboutMe.detail">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row"><!-- Personal info -->
+
+
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Personal Info
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <div class="col-md-6 profile-detail"><p>//'gender:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'home:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'birth:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'religion:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'interests'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'career:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'hometown:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'relationship:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'sport:'|translate//</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'something:'|translate//</p></div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Personal info -->
+
+                <div class="row">
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Contact Info
+
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <div class="col-md-6 profile-detail"><p>//'postalcode:'|translate //</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'personalSite:'|translate //</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'homeAdrr:'|translate //</p></div>
+                            <div class="col-md-6 profile-detail"><p>//'officeAddr:'|translate //</p></div>
+                            <!-- phone info -->
+
+
+                            <div class="text-muted col-md-6 profile-detail"
+                                 ng-repeat="item in Profile.extra.Phones track by $index">
+
+                                <i class="fa fa-phone"> </i>&nbsp;
+
+                                <input type="text form-control input-sm" style="min-width: 100px;font-size: 13px;"
+                                       ng-model="item.tel"/>
+
+                           <span class="phone-access-control">
+                            <i class="fa fa-envelope" ng-click="ChangeAccessPhoneType(item)"
+                               ng-if="item.phoneORemail == 2"> </i>
+                                    <i class="fa fa-eye-slash" ng-click="ChangeAccessPhone(item)"
+                                       tooltip="This phone is accessible only by myself"
+                                       ng-if="item.security == 1"></i>
+                                    <i class="fa fa-eye" ng-click="ChangeAccessPhone(item)"
+                                       tooltip="This phone is accessible in public"
+                                       ng-if="item.security == 2"></i>
+                                    <i class="fa fa-lock" ng-click="ChangeAccessPhone(item)"
+                                       tooltip="This phone is accessible by my registered company"
+                                       ng-if="item.security == 3"></i>
+                                    <i class="fa fa-sitemap" ng-click="ChangeAccessPhone(item)"
+                                       tooltip="This phone is accessible by all companies I am member of them"
+                                       ng-if="item.security == 4"></i>
+
+                                </span>
+                            <span class="phone-access-control trash-phone"
+                                  ng-click="RemovePhone(Profile.extra.Phones,$index)"
+                                  style="margin: 0;"><i
+                                    class="fa-danger  fa fa-trash-o"></i></span>
+
+                            </div>
+
+                            <button ng-click="AddPhone(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">Phone
+                            </button>
+
+                            <!-- phone info -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Educations
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>//'level'|translate//</th>
+                                    <th>//'major'|translate//</th>
+                                    <th>//'year'|translate//</th>
+                                    <th>//'average'|translate//</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>1999</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>1999</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button ng-click="AddDegree(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">Degree
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Qualifications
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>//'courseTitle'|translate//</th>
+                                    <th>//'institute'|translate//</th>
+                                    <th>//'certificateTitle'|translate//</th>
+                                    <th>//'year'|translate//</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>1999</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>1999</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button ng-click="AddDegree(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">
+                                Certificate
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Skills
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>//'Title'|translate//</th>
+                                    <th>//'level'|translate//</th>
+                                    <th>//'exprience'|translate//</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button ng-click="AddDegree(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">Skill
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Languages
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>//'Lang'|translate//</th>
+                                    <th>//'level'|translate//</th>
+                                    <th>//'experience'|translate//</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button ng-click="AddDegree(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">Lang
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+
+                    <div class="panel panel-default" style="border: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Work Experience
+
+                            </h3>
+                        </div>
+                        <div class="panel-body panel-body-profile">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>//'workTitle'|translate//</th>
+                                    <th>//'company'|translate//</th>
+                                    <th>//'time'|translate//</th>
+                                    <th>//'salary'|translate//</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bacholares</td>
+                                    <td>indusrial managment</td>
+                                    <td>indusrial managment</td>
+                                    <td>19.54
+                                        <button ng-click="delDegree(item)"
+                                                class="btn btn-danger btn-xs fa fa-trash pull-right "
+                                                style="clear: both;">
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <button ng-click="AddDegree(item)"
+                                    class="btn btn-primary btn-xs fa fa-plus pull-left " style="clear: both;">job
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div>
+        <div class="col-md-7 fit-height">
+            {% include "myProfile/Posts.html" %}
+            {% include "generic-templates/PostsList.html" %}
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.fit-height').css('height', window.innerHeight - 70 + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+        $('#body-container').css('overflow', 'hidden');
+    });
+
+</script>
+<style>
+
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 0;
+    }
+
+    .fa-danger {
+        color: #de6764;
+    }
+
+    .col-md-6.profile-detail {
+        padding-bottom: 3px;
+        font-size: 14px;
+    }
+
+    {#        .panel-body.panel-body-profile {#}
+    {#            padding: 0 0 0 5px;;#}
+    {#        }#}
+
+    .col-md-6.profile-detail > p {
+        margin: 0;
+    }
+
+    .timeline {
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: table;
+        position: relative;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .timeline:before {
+        background-color: #C7CBD6;
+        bottom: 0px;
+        content: "";
+        left: 50%;
+        position: absolute;
+        top: 0;
+        width: 2px;
+        z-index: 0;
+    }
+
+    h3.timeline-title {
+        margin: 0;
+        color: #C8CCD7;
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0 0 5px;
+        text-transform: uppercase;
+    }
+
+    .t-info {
+        color: #C8CCD7;
+    }
+
+    .timeline-item:before, .timeline-item.alt:after {
+        content: "";
+        display: block;
+        width: 50%;
+    }
+
+    .timeline-item {
+        display: table-row;
+    }
+
+    .timeline-desk {
+        display: table-cell;
+        vertical-align: top;
+        width: 50%;
+    }
+
+    .timeline-desk > .panel {
+        border: none;
+    }
+
+    .timeline-desk h1 {
+        font-size: 16px;
+        font-weight: 300;
+        margin: 0 0 5px;
+    }
+
+    .timeline-desk .panel {
+        display: block;
+        margin-left: 25px;
+        position: relative;
+        text-align: left;
+        background: #F4F4F4;
+    }
+
+    .timeline-item .timeline-desk .arrow {
+        border-bottom: 8px solid transparent;
+        border-top: 8px solid transparent;
+        display: block;
+        height: 0;
+        left: -7px;
+        position: absolute;
+        top: 13px;
+        width: 0;
+    }
+
+    .timeline-item .timeline-desk .arrow {
+        border-right: 8px solid #F4F4F4 !important;
+    }
+
+    .timeline-item.alt .timeline-desk .arrow-alt {
+        border-bottom: 8px solid transparent;
+        border-top: 8px solid transparent;
+        display: block;
+        height: 0;
+        right: -7px;
+        position: absolute;
+        top: 13px;
+        width: 0;
+        left: auto;
+    }
+
+    .timeline-item.alt .timeline-desk .arrow-alt {
+        border-left: 8px solid #F4F4F4 !important;
+    }
+
+    .timeline .timeline-icon {
+        left: -30px;
+        position: absolute;
+        top: 15px;
+    }
+
+    .timeline .timeline-icon {
+        background: #C7CBD6;
+        box-shadow: 0 0 0 3px #C7CBD6;
+    }
+
+    .timeline-desk span a {
+        text-transform: uppercase;
+    }
+
+    .timeline-desk h1.red, .timeline-desk span a.red {
+        color: #EF6F66;
+    }
+
+    .timeline-desk h1.green, .timeline-desk span a.green {
+        color: #39B6AE;
+    }
+
+    .timeline-desk h1.blue, .timeline-desk span a.blue {
+        color: #56C9F5;
+    }
+
+    .timeline-desk h1.purple, .timeline-desk span a.purple {
+        color: #8074C6;
+    }
+
+    .timeline-desk h1.light-green, .timeline-desk span a.light-green {
+        color: #A8D76F;
+    }
+
+    .timeline .timeline-icon.red {
+        background: #EF6F66;
+        box-shadow: 0 0 0 3px #EF6F66;
+    }
+
+    .timeline .timeline-icon.green {
+        background: #39B6AE;
+        box-shadow: 0 0 0 3px #39B6AE;
+    }
+
+    .timeline .timeline-icon.blue {
+        background: #56C9F5;
+        box-shadow: 0 0 0 3px #56C9F5;
+    }
+
+    .timeline .timeline-icon.purple {
+        background: #8074C6;
+        box-shadow: 0 0 0 3px #8074C6;
+    }
+
+    .timeline .timeline-icon.light-green {
+        background: #A8D76F;
+        box-shadow: 0 0 0 3px #A8D76F;
+    }
+
+    .timeline .timeline-icon {
+        border: 3px solid #FFFFFF;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        display: block;
+        height: 12px;
+        width: 12px;
+    }
+
+    .timeline-item.alt .timeline-icon {
+        left: auto;
+        right: -32px;
+    }
+
+    .timeline .time-icon:before {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    .timeline .timeline-date {
+        left: -200px;
+        position: absolute;
+        text-align: right;
+        top: 12px;
+        width: 150px;
+        font-size: 12px;
+    }
+
+    .timeline-desk a.red {
+        color: #EF6F66;
+    }
+
+    .timeline-desk a.blue {
+        color: #3ca2e0;
+    }
+
+    .timeline-desk h5 span {
+        color: #999999;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .timeline-item.alt:before {
+        display: none;
+    }
+
+    .timeline-item:before, .timeline-item.alt:after {
+        content: "";
+        display: block;
+        width: 50%;
+    }
+
+    .timeline-desk p {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    .timeline-desk a {
+        color: #EF6F66;
+    }
+
+    .timeline-desk .panel {
+        margin-bottom: 5px;
+    }
+
+    .timeline-desk .album {
+        margin-top: 20px;
+    }
+
+    .timeline-desk .album a {
+        margin-right: 5px;
+        float: left;
+    }
+
+    .timeline-desk .notification {
+        background: none repeat scroll 0 0 #FFFFFF;
+        margin-top: 20px;
+        padding: 8px;
+    }
+
+    .timeline-item.alt .panel {
+        margin-left: 0;
+        margin-right: 25px;
+    }
+
+    .timeline-item.alt .timeline-date {
+        left: auto;
+        right: -200px;
+        text-align: left;
+    }
+
+    .mbot30 {
+        margin-bottom: 30px;
+    }
+
+    #body-container {
+        background: white;
+    }
+
+    .posts-grid-item {
+        border-top: 1px solid silver;
+        padding: 5px;
+    }
+
+    .overlayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.19); /*dim the background*/
+        text-align: center;
+        display: none;
+
+    }
+
+    .overlayer:hover {
+        cursor: pointer;
+    }
+
+    .overlayer span {
+        color: white;
+        position: absolute;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        top: 50%;
+    }
+
+    #topBackgroundHeaderImageUploader {
+        display: none;
+    }
+
+    #topAvatarImageUploader {
+        display: none;
+    }
+
+    .edit-corner-small {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+    }
+
+    .phone-access-control i:hover {
+        cursor: pointer;
+        color: #004276;
+    }
+
+    .trash-phone {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+</style>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".imgBackgroundImage").hover(
+                function () {
+                    $(".change-background-image").show();
+
+                }, function () {
+                    $(".change-background-image").hide();
+                }
+        );
+
+        $(".change-background-image").hover(
+                function () {
+                    $(".change-background-image").show();
+
+                }, function () {
+                    $(".change-background-image").hide();
+                    ;
+                }
+        );
+
+
+        $(".profile-pic").hover(
+                function () {
+                    $(".change-profile-image").show();
+
+                }, function () {
+                    $(".change-profile-image").hide();
+
+                }
+        );
+
+
+        $(".change-background-image").hide();
+
+
+        $(".change-background-image").click(function (event) {
+            $("#topBackgroundHeaderImageUploader").click();
+        });
+
+        $(".change-profile-image").click(function (event) {
+            $("#topAvatarImageUploader").click();
+        });
+
+
+        $("#topBackgroundHeaderImageUploader").change(function () {
+            if ($("#topBackgroundHeaderImageUploader").val()) {
+                var frmData = new FormData();
+                file = topBackgroundHeaderImageUploader.files[0]
+                if (file.size > (4 * 1024 * 1024)) {
+                    alert("Error in file size");
+                    return false;
+                }
+                switch (file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase()) {
+                    case 'gif':
+                    case 'jpg':
+                    case 'png':
+                        break;
+                    default:
+                        $(this).val('');
+                        // error message here
+                        alert("not an image");
+                        return false;
+                }
+                frmData.append("file", file);
+                $(".uploading-wait").show();
+                $(".change-background-image").hide();
+                $.ajax({
+                    url: '/api/v1/file/upload',
+                    type: "POST",
+                    data: frmData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $(".uploading-wait").hide();
+                        $(".change-background-image").show();
+                        $(".imgBackgroundImage").attr("src", "/api/v1/file/upload?q=" + data.name)
+                        scope = angular.element('[ng-controller=profileCtrl]').scope();
+                        scope.Profile.extra.profileHeaderBackground.url = "/api/v1/file/upload?q=" + data.name
+
+
+                    },
+                    error: function (error) {
+                        $(".uploading-wait").hide();
+                        $(".change-background-image").show();
+                        alert("Error !!!")
+                    }
+                });
+
+            }
+
+        });
+
+
+        $("#topAvatarImageUploader").change(function () {
+            if ($("#topAvatarImageUploader").val()) {
+                var frmData = new FormData();
+                file = topAvatarImageUploader.files[0]
+                if (file.size > (2 * 1024 * 1024)) {
+                    alert("Error in file size");
+                    return false;
+                }
+                switch (file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase()) {
+                    case 'gif':
+                    case 'jpg':
+                    case 'png':
+                        break;
+                    default:
+                        $(this).val('');
+                        // error message here
+                        alert("not an image");
+                        return false;
+                }
+                frmData.append("file", file);
+                $(".uuploading-profile-wait").show();
+                $(".change-profile-image").hide();
+                $.ajax({
+                    url: '/api/v1/file/upload',
+                    type: "POST",
+                    data: frmData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $(".uploading-profile-wait").hide();
+                        $(".change-profile-image").show();
+                        $(".profile-pic").css("background-image", "url(/api/v1/file/upload?q=" + data.name + ")")
+                        scope = angular.element('[ng-controller=profileCtrl]').scope();
+                        scope.Profile.extra.profileAvatar.url = "/api/v1/file/upload?q=" + data.name
+
+
+                    },
+                    error: function (error) {
+                        $(".uploading-profile-wait").hide();
+                        $(".change-profile-image").show();
+                        alert("Error in uploading file, Please try again.");
+                    }
+                });
+
+            }
+
+        })
+
+
+    });
+
+
+</script>

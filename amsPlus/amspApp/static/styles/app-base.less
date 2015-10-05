@@ -1,0 +1,115 @@
+// wiredep-removed:bower:less
+// wiredep-removed:endbower
+
+@import "less/bootstrap.less";
+@import "less/variables.less";
+
+@border-color : rgba(0,0,0,0.1);
+
+// Base
+@import "base.less";
+
+// Pages
+@import "less/pages/login.less";
+@import "less/pages/dashboard.less";
+@import "less/pages/home.less";
+@import "less/pages/inbox.less";
+@import "less/pages/compose.less";
+@import "less/pages/profile.less";
+@import "less/pages/invoice.less";
+@import "less/pages/404.less";
+
+//Layout
+@import "layout/sidebar/sidebar.less";
+@import "layout/topnav/topnav.less";
+@import "layout/utils.less";
+
+// Widgets and Effects
+@import "widgets/input-underline.less";
+@import "widgets/calendar.less";
+@import "widgets/stats.less";
+@import "widgets/buttons.less";
+@import "widgets/input-type.less";
+@import "widgets/carousels.less";
+@import "widgets/growl.less";
+@import "widgets/switch.less";
+@import "widgets/todo.less";
+@import "widgets/map.less";
+@import "widgets/progressButton.less";
+@import "widgets/checkbox.less";
+@import "../../bower_components/bootstrap-btn-outline-rounded/index.less";
+@import "transitions/all.less";
+
+// Other
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+html,body {
+	overflow: hidden;
+}
+
+.rtl {
+	* {
+		direction: rtl;
+	}
+	#body-container {
+		margin-right: 235px;
+		margin-left: 0;
+	}
+	.navbar-header {
+		float: right;
+	}
+	.side-widgets {
+		margin-left: 0 !important;
+	}
+	#sidebar div.side-menu .menu-body ul.sidenav li ul.nested-dropdown {
+		left: 0;
+		right: 45px;
+	}
+	.radio label, .checkbox label {
+		padding-left: 0;
+		padding-right: 20px;
+	}
+	.checkbox input[type="checkbox"], .radio input[type="radio"] {
+		margin-left: 0;
+		margin-right: -20px;
+	}
+	ul.navbar-right {
+		padding-right: 0;
+	}	
+	.navbar-form {
+		margin-left: 10px;
+	}
+	ul.navbar-nav {
+		padding-right: 0;
+		margin-right: 0;
+	}
+	.topnav-navbar ul.pull-right.navbar-nav {
+		margin-right: 0;
+	}
+}
+
+// }
+// @media only screen and (max-width: 767px) { 
+* {
+	a:hover {
+		cursor: pointer;
+	}
+}
+
+
+
+.table-paging td{
+  text-align: center;
+}
+
+// rtl .navbar-form {
+//   margin-left: 10px;
+
+
+// .topnav-navbar ul.pull-right.navbar-nav {
+//   margin-right: 0;

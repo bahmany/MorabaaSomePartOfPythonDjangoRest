@@ -1,0 +1,78 @@
+<div ng-controller="CompanyMembersCtrl" class="fit-height">
+
+    <div class="row">
+        {% load company_charts_tags %}
+        {% autoescape off %}
+            {% CompanyChartsTag %}
+        {% endautoescape %}
+    </div>
+
+
+    <div class="members-container">
+        <div class="well well-sm clear-fix" id="changePosition">
+            {% load pager_navigator_tags %}
+            {% pagerNavigator style="text-center" listname="Members" search_ng_model="MemberSearchText" PageTo="MemberPageTo" %}
+        </div>
+        <div class="well well-sm clearfix" style="margin-top:-21px;" id="membersList">
+            <div ng-repeat="item in Members.results">
+                <div style="  max-width: 369px; float: left;">
+                    <div ng-if="!item.userID" class="well well-sm text-center"  style="background-color: #ffffff;">
+                        <h3>
+                            //item.chartName//
+                        </h3>
+                        <small>
+                            //'has no person'|translate //
+                        </small>
+                        <br>
+                        <button class="btn btn-danger btn-xs fa fa-bomb" ng-click="RemoveInbox(item)" tooltip="//'Completely remove position with inbox archive'|translate //"></button>
+                    </div>
+                    <div ng-if="item.userID" class="well well-sm" style="background-color: #ffffff;">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td rowspan="3">
+                                    <div style="padding: 3px;"><img src="//item.avatar//"
+                                                                    style="width: 100px;height: 100px; padding: 6px ">
+                                    </div>
+                                </td>
+                                <td style="padding: 6px;"><h3 style="margin-bottom: -3px;">
+                                    <strong>//item.profileName// </strong></h3>
+                                    <span style="margin-left: 15px;"> <small>//item.chartName//</small> </span>
+                                    <br>
+
+                                    <div class="btn-group btn-group-xs">
+                                        <button type="button" class="btn btn-default disabled fa fa-search" tooltip="//'View Profile'|translate//">
+                                        </button>
+                                        <button type="button" class="btn btn-default disabled fa fa-fighter-jet" tooltip="//'Send out confirmation'|translate//">
+                                        </button>
+                                        <button type="button" class="btn btn-default fa fa-bitbucket" ng-click="ForceOut(item)" tooltip="//'Force out this person'|translate//">
+
+                                        </button>
+                                        <button type="button" class="btn btn-default fa fa-sitemap" tooltip="//'Change Position'|translate//" ng-click="LoadChart(item)">
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px;"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 6px;">
+
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

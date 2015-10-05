@@ -1,0 +1,54 @@
+<div id="exclusive-setup-div" style="display: none;">
+            <div class="panel panel-default" style="overflow-y: scroll;max-height: 550px;padding-left: 0;">
+
+                <div class="panel-heading">
+                       <h3 class="panel-title ">//lastSelected.businessObject.name//'s options
+                <button style="margin-top:-6px;" class="btn btn-sm btn-danger fa fa-times pull-right"
+                        ng-click="cancelSetupExclusive()"></button>
+                <button style="margin-top:-6px;" class="btn btn-sm btn-warning fa fa-refresh pull-right"
+                        ng-click="resetForm()"></button>
+                <button style="margin-top:-6px;" class="btn btn-sm btn-success fa fa-save pull-right"
+                        ng-click="saveSetupExclusive()"></button>
+            </h3>
+                </div>
+                <div class="panel-body">
+
+                    <label for="convdive">converging / diverging</label><select ng-model="properties.convdive"
+                                                                                name="convdive" id="convdive">
+                    <option value="undefined">select....</option>
+                    <option value="Converging">converging</option>
+                    <option value="Diverging">diverging</option>
+                </select><br/>
+
+                    <div>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <td>name</td>
+                                <td>condition</td>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr ng-repeat="obj in properties.outgoingSeq">
+                                <td ng-bind="obj.name"></td>
+                                <td><input type="text" id="//obj.id//"/></td>
+
+
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <br/>
+                    <label for="isdef">Default/else:</label> <select name="isdef" id="isdef"
+                                                                     ng-model="activeElementIsDef">
+                    <option value="undefined">select...</option>
+                    <option ng-repeat="obj in properties.outgoingSeq" value="//obj.id//">//obj.name//</option>
+                </select>
+
+                </div>
+            </div>
+
+        </div>

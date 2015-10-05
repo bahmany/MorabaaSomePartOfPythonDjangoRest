@@ -1,0 +1,24 @@
+                <div style="max-width: 300px;" class="col-md-6">
+                    //'Selected Members'|translate//
+                    <hr style="  padding-bottom: 0px;  margin-bottom: 0px;margin-top: 4px;">
+                    <div ng-repeat="member in selects"
+                         style="float: right;  padding: 10px;  border: solid 1px lightgrey;border-radius: 0px; width: 100%; border-top: none;">
+                        <div style="display: block">
+                            <a style="cursor: pointer;display: block; text-align: right; word-wrap: break-word; float: right">
+                                <img style="margin-left: 10px; width: 25px; height: 25px; display: block; direction: ltr; cursor: pointer"
+                                     src="//member.avatar//">
+                            </a>
+
+                            <div style="overflow: hidden; display: block; text-align: right; word-wrap: break-word">
+                                <div>
+                                    //member.profileName//
+                                    <small>//member.chartName//</small>
+                                </div>
+                            </div>
+                            <div class="btn-group btn-group-xs pull-left">
+                                <i class="fa fa-search other-btn"></i>
+                                <i class="fa fa-arrow-circle-o-right other-btn" ng-click="removeSelected(member, $index)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>

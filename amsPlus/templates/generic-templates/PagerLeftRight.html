@@ -1,0 +1,30 @@
+<div class="{{ style }}">
+     <table style="width: 100%;">
+        <tbody>
+        <tr>
+            <td style="width: 41px;">
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-default btn-xs fa fa-chevron-left" style="height: 30px;"
+                            ng-class="{'disabled': !{{ listname }}.previous}"
+                            ng-click="{{ PageTo }}({{ listname }}.previous)"></button>
+                    <button type="button" class="btn btn-default btn-xs fa fa-chevron-right" style="height: 30px;"
+                            ng-class="{'disabled': !{{ listname }}.next}"
+                            ng-click="{{ PageTo }}({{ listname }}.next)"></button>
+                </div>
+            </td>
+            <td>
+                <div class="inner-addon right-addon">
+                    <span class="inner-count" style="font-size: 10px;"> //{{ listname }}.count// </span>
+
+                    <i ng-if="isSearchCallbackCompleted" class="glyphicon glyphicon-search"></i>
+                    <i ng-if="!isSearchCallbackCompleted"
+                       class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+                    <input class="form-control input-sm" type="text" ng-model="{{ search_ng_model }}"
+                           ng-model-options="{debounce: 1000}">
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

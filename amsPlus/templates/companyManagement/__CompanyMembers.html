@@ -1,0 +1,146 @@
+<div id="CompanyMembersCtrl" ng-controller="CompanyMembersCtrl" class="fit-height" style="border: 1px solid #dddddd;
+  border-top: none;
+  padding: 10px 5px;
+  border-radius: 0;">
+    <div class="col-md-7">
+
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title col-md-3">
+                    //'users' | translate//
+
+                </h3>
+
+                <div class=" col-md-8 pull-right" style="  margin-top: -10px;
+  margin-bottom: -8px;">
+
+                    <input type="text" class="form-control underline" placeholder="search users..."/>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+
+                <div class="row"
+                     ng-repeat="person in SearchPersons track by $index" style="padding:7px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
+                    <div class="col-md-2" style="height: 100px;background: url('//person.AvatarUrl//');background-size: contain;"></div>
+
+                    <div class="col-md-10" style="height: 100px;overflow: hidden;">
+                            <h4 style="margin: 0">
+                                // person.Name //
+                            </h4>
+
+                            <small>
+                                // person.AboutTitle //
+                            </small>
+                           <div class="btn-group btn-group-xs pull-right">
+                                <button class="btn btn-default btn-xs">view profile</button>
+                                <button class="btn btn-default btn-xs" ng-click="OpenInviteModal(person)">invite
+                                </button>
+                            </div>
+                            <p ng-bind-html="person.AboutDetail" style="font-size:13px; "></p>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-md-5">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Invitations
+
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                <form class="ng-pristine ng-valid">
+                    <h3>
+                        //SelectedPerson.Name//
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-6 well well-sm">
+                            <form class="ng-pristine ng-valid">
+                                <div class="searchbox">
+                                    <input type="text" class="form-control" id="zoneSearch"
+                                           placeholder="Search through positions..."
+                                           ng-model="SearchChart"
+                                           ng-model-options="{debounce: 1000}"
+                                           style="width: 80%; float: left">
+
+                                </div>
+                                <br>
+                                <br>
+
+                                {% load pager_navigator_tags %}
+                                {% pagerNavigator style="text-center" listname="ChartSimpleList" %}
+
+                                <div style="width: 100%" ng-repeat="chart in ChartSimpleList.results track by $index">
+                                    <label class="checkbox1" for="Option//$index//">
+                                        <input id="Option//$index//"
+                                               type="checkbox"
+                                               ng-model="chart.selected"
+                                               ng-change="SelectDeselectChart(chart)"
+                                                >
+                                        <span></span> </label>
+                                    <span>//chart.title//</span>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            {% pagerNavigator style="text-center" listname="Invitations" %}
+
+                            <div ng-repeat="inv in Invitations.results">
+                                <button class="btn btn-default btn-xs" ng-click="RemoveInvitation(inv)">
+                                    Cancel
+                                </button>
+                                <strong>//inv.companyName//</strong> -
+                                <small>
+                                    //inv.chartName//
+                                </small>
+                                -
+                                <small>//inv.dateOfPost//</small>
+                                <button class="btn btn-default btn-xs" ng-click="ApproveInvitation(inv)">
+                                    Done ! :)
+                                </button>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.fit-height').css('height', window.innerHeight + 'px').css('overflow-y', 'scroll').css('overflow-x', 'hidden');
+        });
+
+    </script>
+    <style>
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 0;
+        }
+    </style>
+</div>

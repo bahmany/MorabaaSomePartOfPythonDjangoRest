@@ -1,0 +1,49 @@
+    <script type="text/ng-template" id="GroupEditModal">
+        <form>
+            <div class="modal-header">
+                <h3 class="modal-title">//'GroupModal'|translate//</h3>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="well well-sm row">
+                    <input ng-model="group.title" type="text">
+                </div>
+
+                <div style="max-width: 300px; float: right" class="col-md-6 well well-sm">
+                    <div class="btn-group btn-group-xs">
+                        <button class="btn btn-default" ng-click="OpenSearch('companymemberzoneselectdiv')">
+                            //'Zones'|translate//
+                        </button>
+                        <button class="btn btn-default" ng-click="OpenSearch('companymemberchartselectdiv')">
+                            //'Positions'|translate//
+                        </button>
+                        <button class="btn btn-default" ng-click="OpenSearch('companymemberselectdiv')">
+                            //'Members'|translate//
+                        </button>
+                        <button class="btn btn-default" ng-click="OpenSearch('companymembergroupselectdiv')">
+                            //'Groups'|translate//
+                        </button>
+                    </div>
+
+                    {% load company_members_select_tags %}
+                    {% load company_members_chart_select_tags %}
+                    {% load company_members_zones_select_tags %}
+                    {% load company_members_groups_select_tags %}
+
+                    {% CompanyMembersZoneSelectTag %}
+                    {% CompanyMembersChartSelectTag %}
+                    {% CompanyMembersSelectTag %}
+                    {% CompanyMembersGroupSelectTag %}
+
+
+                </div>
+                {% load company_members_selected_tags %}
+                {% CompanyMembersSelectedTag %}
+
+
+            </div>
+            <div class="modal-footer">
+                <buttun ng-click="saveGroup()" class="btn btn-success fa fa-save"></buttun>
+                <buttun ng-click="cancelGroup()" class="btn btn-danger fa fa-times"></buttun>
+            </div>
+        </form>
+    </script>

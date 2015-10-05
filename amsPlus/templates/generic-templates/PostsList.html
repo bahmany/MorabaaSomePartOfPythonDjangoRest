@@ -1,0 +1,71 @@
+{# Paging #}
+
+<div class="timeline" style="direction: ltr">
+    <article class="timeline-item" ng-repeat="item in Posts.results" ng-class="$even ? 'alt' : ''">
+        <div class="timeline-desk">
+            <div class="panel">
+                <div class="panel-body">
+                    <span ng-class="$even ? 'arrow-alt' : 'arrow'"></span>
+                    <span class="timeline-icon" ng-class="$even ? 'red' : 'blue'"></span>
+                    <span class="timeline-date">//item.dateOfPost | jalaliDateFromNow:'jYYYY-jMM-jDD hh:mm:ss'//</span>
+
+
+                    <p class="message-text" ng-if="!item.isItEditing"
+                       style="white-space: pre-wrap;word-break: break-word;">//item.text //</p>
+
+                    <div class="row" ng-if="item.isItEditing">
+            <textarea ng-model="item.text" style="width:100%; height: 100%;">
+            </textarea>
+                        <br>
+                        <a ng-click="UpdatePost(item)" class="pull-right" ng-class="$even ? 'red' : 'blue'"><i
+                                class="fa fa-save"></i> </a>
+                        <a ng-click="CancelUpdatePost(item)" class="pull-right" style="margin: 0 8px;"
+                           ng-class="$even ? 'red' : 'blue'"><i class="fa fa-times"></i> </a>
+
+
+                    </div>
+
+
+                    <ul class="list-inline font-xs pull-right posts-btns"
+                        style="clear: right;margin-bottom: 2px;margin-top: 5px;" ng-if="!item.isItEditing">
+
+                        <li>
+                            <a class="text-default"
+                               ng-class="$even ? 'red' : 'blue'"><i class="fa fa-thumbs-up"></i> </a>
+                        </li>
+                        <li>
+                            <a class="text-default"
+                               ng-class="$even ? 'red' : 'blue'"><i class="fa fa-share"></i> </a>
+                        </li>
+                        <li>
+                            <a class="text-default" ng-click="ShowUpdatePanel(item)"
+                               ng-class="$even ? 'red' : 'blue'"><i class="fa fa-pencil"></i> </a>
+                        </li>
+                        <li>
+                            <a class="text-default" ng-click="DeletePost(item, $index)"
+                               ng-class="$even ? 'red' : 'blue'"><i class="fa fa-trash-o"></i> </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+
+</div>
+<div class="row text-center">
+    <button type="button" class="btn btn-default " ng-click="loadMore($event)">load more</button>
+
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+
+<style>
+    .posts-btns .fa:hover {
+        opacity: 0.75; /* Opacity (Transparency) */
+        color: #0000ff;;
+
+    }
+
+</style>

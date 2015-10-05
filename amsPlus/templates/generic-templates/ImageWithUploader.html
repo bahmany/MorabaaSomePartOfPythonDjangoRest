@@ -1,0 +1,128 @@
+<div class="{{ imageContainerSize }} {{ id }}"
+     style="margin-left: 15px;
+             margin-right: 15px;
+             background-image: url('{{ defaultEmptyAvatarUrl }}');
+             background-size: 100% 100%;
+             background-repeat: no-repeat;
+             overflow:hidden;
+             width: {{ width }};
+             height: {{ height }};
+             border: {{ imageContainerBorder }};
+             border-radius: {{ imageContainerBorderRadius }};
+             {{ imageContainerOtherCss }}
+
+             "
+
+     id="{{ id }}"
+     name="{{ id }}"
+        >
+    <div class="{{ overlayerClass }} {{ change_profile_image }}" style="display: block;">
+                                <span>
+                                    Change Profile Image
+                                </span>
+    </div>
+    <div class="{{ overlayerClass }}  {{ uploading_profile_wait }}">
+                                <span>
+                                    <img src="/static/images/uploading.gif">
+                                </span>
+    </div>
+
+    <input type="file" style="display: none" id="{{ fileUploaderID }}" name="{{ fileUploaderID }}">
+
+</div>
+
+<style type="text/css">
+
+
+    .{{ overlayerClass }} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.19); /*dim the background*/
+        text-align: center;
+        display: none;
+
+    }
+
+    .{{ overlayerClass }}:hover {
+        cursor: pointer;
+    }
+
+    .{{ overlayerClass }} span{
+        color: white;
+        position: absolute;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        top: 50%;
+    }
+
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+                $(".{{ overlayerClass }}").hide();
+        $(".{{ id }}").hover(
+                function () {
+                    $(".{{ change_profile_image }}").show();
+
+                }, function () {
+                    $(".{{ change_profile_image }}").hide();
+                }
+        );
+        $(".{{ change_profile_image }}").click(function (event) {
+            $("#{{ fileUploaderID }}").click();
+        });
+        $("#{{fileUploaderID}}").change(function () {
+            if ($("#{{fileUploaderID}}").val()) {
+                var frmData = new FormData();
+                file = {{ fileUploaderID }}.files[0]
+                if (file.size > (2 * 1024 * 1024)) {
+                    alert("Error in file size");
+                    return false;
+                }
+                switch (file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase()) {
+                    case 'gif':
+                    case 'jpg':
+                    case 'png':
+                        break;
+                    default:
+                        $(this).val('');
+                        // error message here
+                        alert("not an image");
+                        return false;
+                }
+                frmData.append("file", file);
+                $(".{{ uploading_profile_wait }}").show();
+                $(".{{ change_profile_image }}").hide();
+                $.ajax({
+                    url: '/api/v1/file/upload',
+                    type: "POST",
+                    data: frmData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $(".{{ overlayerClass }}").hide();
+                        $(".{{ change_profile_image }}").show();
+                        $(".{{ id }}").css("background-image", "url(/api/v1/file/upload?q=" + data.name + ")")
+                        scope = angular.element('[ng-controller={{ controllerName }}]').scope();
+                        scope.{{ modelName }} = "/api/v1/file/upload?q=" + data.name
+
+
+                    },
+                    error: function (error) {
+                        $(".{{ overlayerClass }}").hide();
+                        $(".{{ change_profile_image }}").show();
+                        alert("Error in uploading file, Please try again.");
+                    }
+                });
+            }
+        })
+    })
+</script>
+
+

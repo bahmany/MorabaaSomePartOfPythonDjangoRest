@@ -1,0 +1,61 @@
+<div class="timeline" style="direction: ltr">
+    <article class="timeline-item ng-scope alt">
+        <div class="timeline-desk">
+            <div class="panel" style="background: inherit;
+  border: inherit;">
+
+                <div class="panel-body" style="margin-top:20px;">
+                    <span class="timeline-icon green"></span>
+                    <span class="timeline-date ng-binding">
+                        //"jointosystemat" | translate //
+
+                        {{ YearOfJoint }}
+
+                    </span>
+
+                    <br/><br/>
+
+                </div>
+
+            </div>
+        </div>
+    </article>
+    <article class="timeline-item ng-scope alt">
+        <div class="timeline-desk">
+            <div class="panel" style="background: inherit;
+  border: inherit;">
+                <div class="panel-body" style="margin-top:5px;">
+                    <span class="timeline-icon"></span>
+                    <br/>
+                </div>
+
+            </div>
+        </div>
+    </article>
+</div>
+<form onsubmit="return false;" method="post" style="margin-bottom: 0;background: white;" class="well well-sm clearfix">
+
+    <div class="row">
+        <div class="col-md-1">
+            <img src="" id="imgPostAvatar" style="width:40px; height:40px;">
+        </div>
+        <div class="col-md-10">
+
+    <textarea placeholder="What are you thinking?" ng-model="Post.text" class="form-control"
+              rows="2" style="border: none;
+                              resize: none;
+                              "></textarea>
+
+
+        </div>
+    </div>
+    <br/>
+
+    <div class="row pull-right" style="  margin-right: 6px;">
+        {% load progress_btn %}
+        {% autoescape off %}
+            {% ProgressPrimaryBtn FunctionName="CreatePost()" %}
+        {% endautoescape %}
+    </div>
+</form>
+
